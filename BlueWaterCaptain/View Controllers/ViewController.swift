@@ -8,9 +8,14 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewDelegate, CHCSVParserDelegate {
+    
+    var locationData = [Dictionary<String, String>]()
+    var dict : Dictionary<String, String>!
+    
     
     @IBOutlet weak var introScrollview: UIScrollView!
     @IBOutlet weak var yesButton: UIButton!
@@ -23,6 +28,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
     var currentPageIndex = 0
     var prevPageIndex = -1
     var pageControlArray : Array<UIImageView>!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     override func viewDidLoad() {
@@ -37,7 +43,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
         laterButton.layer.shadowColor = UIColor.darkGray.cgColor
         laterButton.layer.shadowOpacity = 0.3
         
-       
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,10 +58,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         introScrollview.contentSize = CGSize(width: 3 * self.view.frame.size.width, height: self.view.frame.size.height)
+        
         if(UserDefaults.standard.bool(forKey: "isFirstTime") == true){
-            performSegue(withIdentifier: "directMapSegue", sender: self)
+            performSegue(withIdentifier: "mapSegue", sender: self)
         }
-       
+        else {
+            let path = Bundle.main.path(forResource: "Location", ofType: "csv") //Hard coded these in
+            let url = URL.init(fileURLWithPath: path!)
+            let parser : CHCSVParser! = CHCSVParser.init(contentsOfDelimitedURL: url, delimiter: ",".utf16.first!)
+            
+            parser.delegate = self
+            parser.parse()
+        }
     }
     
     
@@ -64,55 +77,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        if CLLocationManager.authorizationStatus() != .authorizedAlways     // Check authorization for location tracking
-        {
-            locationManager.requestAlwaysAuthorization()                    // LocationManager will callbackdidChange... once user responds
-        } else {
-            locationManager.startUpdatingLocation()
-        }
-        
-        if CLLocationManager.locationServicesEnabled() {
-            switch(CLLocationManager.authorizationStatus()) {
-            case .notDetermined, .restricted, .denied:
-                print("No access")
-            case .authorizedAlways, .authorizedWhenInUse:
-                print("Access")
-            }
-        } else {
-            print("Location services are not enabled")
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
             // If status has not yet been determied, ask for authorization
-            manager.requestWhenInUseAuthorization()
+          //  manager.requestWhenInUseAuthorization()
+             print("not determined")
             break
         case .authorizedWhenInUse:
             // If authorized when in use
              print("authorizedWhenInUse")
             manager.startUpdatingLocation()
+              goToMapScreen()
             break
         case .authorizedAlways:
             print("Great, location services are now enabled! Tap 'OK' to continue")
             // If always authorized
             manager.startUpdatingLocation()
+             goToMapScreen()
             break
         case .restricted:
-            print("restricted")// If restricted by e.g. parental controls. User can't enable Location Services
+            print("restricted")
+             goToMapScreen()// If restricted by e.g. parental controls. User can't enable Location Services
             break
         case .denied:
             print("denied")
+            goToMapScreen()
             // If user denied your app access to Location Services, but can grant access from Settings.app
             break
         }
     }
     
      @IBAction func laterButtonTapped(_ sender : Any) {
-        
+       goToMapScreen()
     }
 
+    func goToMapScreen() {
+        if(UserDefaults.standard.bool(forKey: "isFirstTime") != true){
+            UserDefaults.standard.set(true, forKey: "isFirstTime")
+            performSegue(withIdentifier: "mapSegue", sender: self)
+        }
+    }
     
     
     func scrollViewWillBeginDragging(_ scrollView : UIScrollView)
@@ -141,5 +148,78 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
 
     }
 
+    func parserDidBeginDocument(_ parser: CHCSVParser) {
+        
+    }
+    
+    func parserDidEndDocument(_ parser: CHCSVParser!) {
+        
+        print(locationData.count)
+        
+        for i in 0..<1000 {
+       //     print(i)
+//            if(i > 1120) {
+//                print(locationData[i])
+//            }
+            let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
+            let newLoc = NSManagedObject(entity: entity!, insertInto: context) as! Location
+            newLoc.windE = (locationData[i]["0"]!).toBool()!
+            newLoc.windN = (locationData[i]["1"]!).toBool()!
+            newLoc.windS = (locationData[i]["4"]!).toBool()!
+            newLoc.windW = (locationData[i]["7"]!).toBool()!
+            newLoc.windSW = (locationData[i]["6"]!).toBool()!
+            newLoc.windNW = (locationData[i]["3"]!).toBool()!
+            newLoc.windSE = (locationData[i]["5"]!).toBool()!
+            newLoc.windNE = (locationData[i]["2"]!).toBool()!
+            newLoc.type = locationData[i]["16"]!
+            newLoc.country = locationData[i]["12"]!
+            newLoc.city = locationData[i]["14"]!
+            newLoc.latitude = Double(locationData[i]["9"]!)!
+            newLoc.longitude = Double(locationData[i]["10"]!)!
+            newLoc.locDescription = locationData[i]["15"]!
+            newLoc.island = locationData[i]["11"]!
+            newLoc.name = locationData[i]["13"]!
+            newLoc.depth = Double(locationData[i]["8"]!)!
+            do {
+                try context.save()
+                print("saved")
+            } catch {
+                print("Failed saving")
+            }
+        }
+    }
+    
+    func parser(_ parser: CHCSVParser!, didBeginLine recordNumber: UInt) {
+        dict = [String : String]()
+      //  print(recordNumber)
+        
+    }
+    
+    func parser(_ parser: CHCSVParser!, didEndLine recordNumber: UInt) {
+        
+     //  print(recordNumber)
+        locationData.append(dict)
+        dict=nil;
+         //print(locationData.count)
+    }
+    
+    func parser(_ parser: CHCSVParser!, didReadField field: String!, at fieldIndex: Int) {
+        
+        dict["\(fieldIndex)"] =  field as String!
+    }
+    
+}
+
+extension String {
+    func toBool() -> Bool? {
+        switch self {
+        case "True", "true", "yes", "1":
+            return true
+        case "False", "false", "no", "0":
+            return false
+        default:
+            return nil
+        }
+    }
 }
 

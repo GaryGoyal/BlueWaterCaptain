@@ -25,6 +25,8 @@
 		86CF445E20B6D6A200C34247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86CF445C20B6D6A200C34247 /* Main.storyboard */; };
 		86CF446320B6D6A200C34247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86CF446220B6D6A200C34247 /* Assets.xcassets */; };
 		86CF446620B6D6A200C34247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86CF446420B6D6A200C34247 /* LaunchScreen.storyboard */; };
+		86CF6F2120BD13FF00C47D1E /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CF6F2020BD13FF00C47D1E /* CHCSVParser.m */; };
+		86CF6F2420BD14EA00C47D1E /* Location.csv in Resources */ = {isa = PBXBuildFile; fileRef = 86CF6F2320BD14EA00C47D1E /* Location.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,9 @@
 		86CF446220B6D6A200C34247 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86CF446520B6D6A200C34247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86CF446720B6D6A200C34247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86CF6F2020BD13FF00C47D1E /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHCSVParser.m; path = CHCSVParser/CHCSVParser.m; sourceTree = "<group>"; };
+		86CF6F2220BD140800C47D1E /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = CHCSVParser/CHCSVParser.h; sourceTree = "<group>"; };
+		86CF6F2320BD14EA00C47D1E /* Location.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Location.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +150,10 @@
 		86CF445720B6D6A200C34247 /* BlueWaterCaptain */ = {
 			isa = PBXGroup;
 			children = (
+				86CF6F2320BD14EA00C47D1E /* Location.csv */,
+				86CF6F2520BD32C800C47D1E /* FBAnnotationClustering */,
+				86CF6F2220BD140800C47D1E /* CHCSVParser.h */,
+				86CF6F2020BD13FF00C47D1E /* CHCSVParser.m */,
 				8613D8DF20BBB9DE0091CC0B /* Supporting Files */,
 				8613D8E020BBB9FE0091CC0B /* Custom Views */,
 				8613D8DE20BBB9D10091CC0B /* Model */,
@@ -157,6 +166,13 @@
 				86CF446720B6D6A200C34247 /* Info.plist */,
 			);
 			path = BlueWaterCaptain;
+			sourceTree = "<group>";
+		};
+		86CF6F2520BD32C800C47D1E /* FBAnnotationClustering */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FBAnnotationClustering;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +238,7 @@
 				86CF446620B6D6A200C34247 /* LaunchScreen.storyboard in Resources */,
 				86CF446320B6D6A200C34247 /* Assets.xcassets in Resources */,
 				86CF445E20B6D6A200C34247 /* Main.storyboard in Resources */,
+				86CF6F2420BD14EA00C47D1E /* Location.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86CF6F2120BD13FF00C47D1E /* CHCSVParser.m in Sources */,
 				8613D90120BBBD010091CC0B /* Location+CoreDataClass.swift in Sources */,
 				8613D8FA20BBBB230091CC0B /* LocationResultCell.swift in Sources */,
 				8613D8E420BBBA400091CC0B /* SideMenuViewController.swift in Sources */,
