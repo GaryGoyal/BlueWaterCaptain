@@ -18,10 +18,22 @@ class LocationSearchTable: UITableViewController {
     var handleMapSearchDelegate:HandleMapSearch? = nil
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
      var searchCompleter = MKLocalSearchCompleter()
+    var waitIndicator : UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchCompleter.delegate = self
+        
+        waitIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+
+        waitIndicator.center = CGPoint(x: view.center.x, y : view.center.y - 200)
+        waitIndicator.hidesWhenStopped = false
+        waitIndicator.isHidden = true
+        // Call stopAnimating() when need to stop activity indicator
+        //myActivityIndicator.stopAnimating()
+        
+        
+        view.addSubview(waitIndicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,9 +95,30 @@ class LocationSearchTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          if(indexPath.section == 0) {
-            //let selectedItem = matchingItems[indexPath.row].placemark
-           // handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
-            dismiss(animated: true, completion: nil)
+
+            let request = MKLocalSearchRequest()
+            print(matchingItems[indexPath.row].title)
+            request.naturalLanguageQuery = matchingItems[indexPath.row].title
+            request.region = (mapView?.region)!
+            let search = MKLocalSearch(request: request)
+            waitIndicator.startAnimating()
+            waitIndicator.isHidden = false
+             self.view.isUserInteractionEnabled = false
+            search.start { (response, error) in
+                guard let response = response else {
+                            return
+                }
+                if(response.mapItems.count > 0) {
+                    let selectedItem = response.mapItems.first?.placemark
+                    DispatchQueue.main.async {
+                        self.waitIndicator.stopAnimating()
+                        self.waitIndicator.isHidden = true
+                         self.view.isUserInteractionEnabled = true
+                        self.handleMapSearchDelegate?.dropNewLocationPin(placemark: selectedItem!)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
         }
          else {
             let selectedItem = matchingLocalItems[indexPath.row]
@@ -110,7 +143,11 @@ extension LocationSearchTable : UISearchResultsUpdating {
         localRequest.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", searchBarText)
         do {
             matchingLocalItems = try context.fetch(localRequest) as! Array<Location>
-            print("Local Response \(matchingLocalItems.count)")
+            ///print("Local Response \(matchingLocalItems.count)")
+//            for var i in 0..< matchingLocalItems.count {
+//                print(self.matchingLocalItems[i].name)
+//            }
+            print(matchingLocalItems)
              self.tableView.reloadData()
             
         } catch {

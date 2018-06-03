@@ -118,6 +118,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
         if(UserDefaults.standard.bool(forKey: "isFirstTime") != true){
             UserDefaults.standard.set(true, forKey: "isFirstTime")
             performSegue(withIdentifier: "mapSegue", sender: self)
+             UserDefaults.standard.set("DecDeg", forKey: "coordinateFormat")
+           //  UserDefaults.standard.set("mm/dd/yy", forKey: "dateFormat")
+           //  UserDefaults.standard.set("24 Hour", forKey: "timeFormat")
+             UserDefaults.standard.set("metre", forKey: "depthFormat")
+            UserDefaults.standard.set(45.433635, forKey: "defaultLatitude")
+            UserDefaults.standard.set(12.337164, forKey: "defaultLongitude")
+            UserDefaults.standard.set(2.0, forKey: "depthValue")
+            UserDefaults.standard.set(["Anchorage","Buoy","Marina"], forKey: "types")
+             UserDefaults.standard.synchronize()
         }
     }
     
@@ -182,7 +191,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
             newLoc.depth = Double(locationData[i]["8"]!)!
             do {
                 try context.save()
-                print("saved")
+                //print("saved")
             } catch {
                 print("Failed saving")
             }
