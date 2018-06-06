@@ -21,6 +21,9 @@
 		8613D90520BBBFB60091CC0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D90420BBBFB60091CC0B /* AppDelegate.swift */; };
 		8636390020C265D600C04D62 /* CalculationsAndConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863638FF20C265D600C04D62 /* CalculationsAndConversions.swift */; };
 		8636390620C28C2000C04D62 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8636390520C28C2000C04D62 /* FilterViewController.swift */; };
+		8636391520C54F6800C04D62 /* Versioning+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8636391320C54F6800C04D62 /* Versioning+CoreDataClass.swift */; };
+		8636391620C54F6800C04D62 /* Versioning+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8636391420C54F6800C04D62 /* Versioning+CoreDataProperties.swift */; };
+		8636391820C551E100C04D62 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8636391720C551E100C04D62 /* AddEditViewController.swift */; };
 		8640D81820B9237700F2DF7B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8640D81720B9237700F2DF7B /* CoreLocation.framework */; };
 		8640D82720B935EA00F2DF7B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8640D82520B935E900F2DF7B /* SWRevealViewController.m */; };
 		8640D85120B99DC600F2DF7B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8640D85020B99DC500F2DF7B /* MapKit.framework */; };
@@ -52,6 +55,9 @@
 		8613D90620BBBFCD0091CC0B /* BlueWaterCaptain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueWaterCaptain-Bridging-Header.h"; sourceTree = "<group>"; };
 		863638FF20C265D600C04D62 /* CalculationsAndConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsAndConversions.swift; sourceTree = "<group>"; };
 		8636390520C28C2000C04D62 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		8636391320C54F6800C04D62 /* Versioning+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Versioning+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8636391420C54F6800C04D62 /* Versioning+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Versioning+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8636391720C551E100C04D62 /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		8640D81720B9237700F2DF7B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8640D82520B935E900F2DF7B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8640D82620B935E900F2DF7B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -95,6 +101,7 @@
 				86CF6F2C20BF0C0800C47D1E /* LoginViewController.swift */,
 				86CF6F2E20BF0C1800C47D1E /* RegisterViewController.swift */,
 				8636390520C28C2000C04D62 /* FilterViewController.swift */,
+				8636391720C551E100C04D62 /* AddEditViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -102,6 +109,8 @@
 		8613D8DE20BBB9D10091CC0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8636391320C54F6800C04D62 /* Versioning+CoreDataClass.swift */,
+				8636391420C54F6800C04D62 /* Versioning+CoreDataProperties.swift */,
 				8613D8FF20BBBD010091CC0B /* Location+CoreDataClass.swift */,
 				8613D90020BBBD010091CC0B /* Location+CoreDataProperties.swift */,
 			);
@@ -275,9 +284,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8636391820C551E100C04D62 /* AddEditViewController.swift in Sources */,
 				86CF6F2120BD13FF00C47D1E /* CHCSVParser.m in Sources */,
 				8613D90120BBBD010091CC0B /* Location+CoreDataClass.swift in Sources */,
 				8613D8FA20BBBB230091CC0B /* LocationResultCell.swift in Sources */,
+				8636391520C54F6800C04D62 /* Versioning+CoreDataClass.swift in Sources */,
 				8613D8E420BBBA400091CC0B /* SideMenuViewController.swift in Sources */,
 				8640D82720B935EA00F2DF7B /* SWRevealViewController.m in Sources */,
 				8613D90520BBBFB60091CC0B /* AppDelegate.swift in Sources */,
@@ -285,6 +296,7 @@
 				8613D90220BBBD010091CC0B /* Location+CoreDataProperties.swift in Sources */,
 				8613D8FB20BBBB230091CC0B /* IntroLabel.swift in Sources */,
 				86CF6F2F20BF0C1800C47D1E /* RegisterViewController.swift in Sources */,
+				8636391620C54F6800C04D62 /* Versioning+CoreDataProperties.swift in Sources */,
 				8613D8FE20BBBCB50091CC0B /* BlueWaterCaptain.xcdatamodeld in Sources */,
 				8613D8E520BBBA400091CC0B /* ViewController.swift in Sources */,
 				8613D8F720BBBB0C0091CC0B /* LocationSearchTable.swift in Sources */,

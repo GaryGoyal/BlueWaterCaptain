@@ -18,8 +18,17 @@
         <attribute name="windSE" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="windSW" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="windW" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="forLocation" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="Versioning" representedClassName="Versioning" syncable="YES">
+        <attribute name="attributeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previousValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeOfChange" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="verification" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="versions" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Location" positionX="-63" positionY="-18" width="128" height="298"/>
+        <element name="Location" positionX="-36" positionY="-7056" width="128" height="313"/>
+        <element name="Versioning" positionX="169" positionY="-6939" width="128" height="118"/>
     </elements>
 </model>
