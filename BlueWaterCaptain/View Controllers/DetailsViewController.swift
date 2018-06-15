@@ -8,9 +8,12 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class DetailsViewController: UIViewController, MKMapViewDelegate {
     
+    
+     @IBOutlet weak var arcView : ArcView!
      @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapMarker: UIImageView!
      @IBOutlet weak var imagesView: UIView!
@@ -26,29 +29,52 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
      @IBOutlet weak var changesViewHeight: NSLayoutConstraint!
       @IBOutlet weak var depthLabelTop: UILabel!
     var calculationObj = CalculationsAndConversions()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedLocation : Location!
+    var imagesArray = [Images]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.layer.borderColor = UIColor.lightGray.cgColor
         mapView.layer.borderWidth = 0.5
+        configureView()
         
+     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    func configureView() {
+
+        mapView.removeAnnotations(mapView.annotations)
         let annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude))
         annotation.title = selectedLocation.name
         annotation.type = selectedLocation.type
         annotation.location = selectedLocation
         mapView.addAnnotation(annotation)
         
-        let span = MKCoordinateSpanMake(0.5, 0.5)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude), span: span)
         //  let region  = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 100000, 100000)
         mapView.setRegion(region, animated: true)
         navBar.topItem?.title = selectedLocation.name
-        nameLabel.text = selectedLocation.name
-        islandLabel.text = selectedLocation.island! + ", " + selectedLocation.city!
+        if((selectedLocation.name?.count)! > 0) {
+            nameLabel.text = selectedLocation.name
+        }
+        else {
+            nameLabel.text = " "
+        }
+        if((selectedLocation.island?.count)! == 0 && (selectedLocation.city?.count)! == 0) {
+            islandLabel.text = " "
+        }
+        else {
+            islandLabel.text = selectedLocation.island! + ", " + selectedLocation.city!
+        }
+        
         descLabel.text = selectedLocation.locDescription
         configureLabels()
-       // coordinatesLabel.text = String(selectedLocation.latitude) + "°, " + String(selectedLocation.longitude) + "°"
+        
         if(selectedLocation.type == "Marina") {
             mapMarker.image = UIImage(named: "marina")
         }
@@ -62,23 +88,32 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
             mapMarker.image = UIImage(named: "mapMarker")
         }
         
-        let height : CGFloat  = 0.0
+        var height : CGFloat  = 0.0
         
-        print(calculationObj.convertFromDegreeDecimalToDegreeMinutes(selectedLocation.latitude, forType: "latitude"))
-        print(calculationObj.convertFromDegreeDecimalToDegreeMinutes(selectedLocation.longitude, forType: "longitude"))
-    print(calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds(selectedLocation.latitude, forType: "latitude"))
-  print(calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds(selectedLocation.longitude, forType: "longitude"))
+        arcView.createArcWithWidth(arcWidth: 4.0, andWindArray: [selectedLocation.windSE,selectedLocation.windS,selectedLocation.windSW,selectedLocation.windW,selectedLocation.windNW,selectedLocation.windN,selectedLocation.windNE,selectedLocation.windE])
+        arcView.isUserInteractionEnabled = false
+        changesViewHeight.constant = 0.0
+        changesView.isHidden = true
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
+        request.predicate = NSPredicate(format: "forLocation == %@", selectedLocation!)
+        request.returnsObjectsAsFaults = false
         
-//        changesViewHeight.constant = 0.0
-//        changesView.isHidden = true
+        do {
+            imagesArray = try context.fetch(request) as! Array<Images>
+            print(imagesArray)
+            
+        } catch {
+            
+            print("Failed")
+        }
         
-     /*   let count = 10
         var x : CGFloat = 0.0
         var y  : CGFloat = 0.0
         let width = (self.view.frame.width - 30) / 2
-        for i in 0...count {
+        for i in 0..<imagesArray.count {
             let img = UIImageView.init(frame: CGRect(x: x, y: y, width: width, height: width))
-            img.image = UIImage(named : "background")
+            img.image = UIImage(data: imagesArray[i].image! as Data)
+            img.contentMode = .scaleAspectFit
             imagesView.addSubview(img)
             x = x + 10.0 + width
             if(i % 2 != 0) {
@@ -86,25 +121,27 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
                 x = 0
             }
             else {
-               height = height + 10.0 + width
+                height = height + 10.0 + width
             }
-        }*/
+        }
         
         
         imagesViewHeight.constant = height
+        
     }
+
     
     func configureLabels() {
-        
+
         let coordinateFormat = UserDefaults.standard.value(forKey: "coordinateFormat") as! String
         switch coordinateFormat {
-        case "DecDeg":
+        case "Decimal Degree D.D°":
             coordinatesLabel.text = String(selectedLocation.latitude) + "°, " + String(selectedLocation.longitude) + "°"
             break
-        case "DecMin":
+        case "Decimal Minutes D° M.M′":
             coordinatesLabel.text = calculationObj.convertFromDegreeDecimalToDegreeMinutes(selectedLocation.latitude, forType: "latitude") + ", " + calculationObj.convertFromDegreeDecimalToDegreeMinutes(selectedLocation.longitude, forType: "longitude")
             break
-        case "DecMinSec":
+        case "Decimal Seconds D° M′ S.S":
             coordinatesLabel.text = calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds(selectedLocation.latitude, forType: "latitude") + ", " + calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds(selectedLocation.longitude, forType: "longitude")
             break
         default:
@@ -114,13 +151,13 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         
         let depthFormat = UserDefaults.standard.value(forKey: "depthFormat") as! String
         switch depthFormat {
-        case "metre":
+        case "metric system (metre)":
             depthLabel.text = String(selectedLocation.depth) + " metre"
             depthLabelTop.text = String(selectedLocation.depth) + " m"
             break
-        case "km":
-            depthLabel.text = String(selectedLocation.depth/1000.0) + " km"
-            depthLabelTop.text = String(selectedLocation.depth/1000.0) + " km"
+        case "imperial system (feet)":
+            depthLabel.text = String(calculationObj.convertMetreToFeet(selectedLocation.depth)) + " feet"
+            depthLabelTop.text = String(calculationObj.convertMetreToFeet(selectedLocation.depth)) + " feet"
             break
         default:
             depthLabel.text = String(selectedLocation.depth) + " metre"
@@ -136,7 +173,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func editLocation(_ sender : Any) {
-        
+      //Gary  //self.performSegue(withIdentifier: "editSegue", sender: self)
     }
     
     @IBAction func validateChanges(_ sender : Any) {
@@ -186,20 +223,20 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("Open add edit")
-        selectedLocation = (view as! LocationAnnotationView).location
-        performSegue(withIdentifier: "detailsSegue", sender: self)
-    }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "editSegue" {
+            let editNav = segue.destination as? UINavigationController
+            let  editVC = editNav?.viewControllers.first as! AddEditViewController
+            editVC.location = selectedLocation
+            editVC.isFromSideMenu = false
+            editVC.isNewLocation = false
+        }
     }
-    */
+ 
 
 }

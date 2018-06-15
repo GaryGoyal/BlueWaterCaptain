@@ -8,16 +8,23 @@
 
 import UIKit
 
-class FilterViewController: UITableViewController {
+class FilterViewController: UITableViewController,ArcViewDelegate {
+    
     
     @IBOutlet weak var anchorageSwitch: UISwitch!
      @IBOutlet weak var bouySwitch: UISwitch!
      @IBOutlet weak var marinaSwitch: UISwitch!
      @IBOutlet weak var depthSlider: UISlider!
     @IBOutlet weak var depthValue: UILabel!
+      @IBOutlet weak var arcView : ArcView!
+     @IBOutlet weak var filterLabel: UILabel!
+    var dirArray = ["SE","S","SW","W","NW","N","NE","E"]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateMesg()
     
         let types  = UserDefaults.standard.object(forKey: "types") as! [String]
         
@@ -43,8 +50,32 @@ class FilterViewController: UITableViewController {
         }
         
         depthSlider.value = Float(UserDefaults.standard.double(forKey: "depthValue"))
-        depthValue.text = "< " + String(format: "%.1f", UserDefaults.standard.double(forKey: "depthValue")) + " m"
+        depthValue.text = ">=" + String(format: "%.1f", UserDefaults.standard.double(forKey: "depthValue")) + " m"
         
+        arcView.delegate = self
+        arcView.isFilter = true
+        arcView.createArcWithWidth(arcWidth: 15.0, andWindArray:        (UserDefaults.standard.value(forKey: "windDirFilter") as! Array<Int16>))
+        
+    }
+    
+    func updateWindDirections(_ windArray: Array<Int16>) {
+        UserDefaults.standard.set(windArray, forKey: "windDirFilter")
+        updateMesg()
+    }
+    
+    
+    func updateMesg() {
+        var mesg = "Only locations will be shown, that are marked protected with wind from"
+        let arr = (UserDefaults.standard.value(forKey: "windDirFilter") as! Array<Int16>)
+        for i in 0..<arr.count {
+            if(arr[i] == 1) {
+                mesg = mesg + " " + dirArray[i] + ","
+            }
+        }
+        if(!(arr.contains(1))) {
+            mesg = "Locations are not filtered by wind direction"
+        }
+        filterLabel.text = mesg
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,6 +105,7 @@ class FilterViewController: UITableViewController {
         }
     }
     
+
     @IBAction func buoySwitchPressed(_ sender : Any) {
         
         if bouySwitch.isOn {
@@ -112,13 +144,24 @@ class FilterViewController: UITableViewController {
 
         let roundedValue = round((sender as! UISlider).value / 0.5) * 0.5
         (sender as! UISlider).value = roundedValue
-         depthValue.text = "< " + String(format: "%.1f", depthSlider.value) + " m"
+         depthValue.text = ">= " + String(format: "%.1f", depthSlider.value) + " m"
         UserDefaults.standard.set(roundedValue, forKey: "depthValue")
         UserDefaults.standard.synchronize()
     }
     
     
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if(indexPath.row == 0) {
+            return 290
+        }
+        else {
+            return 60
+        }
+        
+    }
 
  /*   override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

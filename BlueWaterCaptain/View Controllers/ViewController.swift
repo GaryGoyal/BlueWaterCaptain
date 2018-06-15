@@ -63,7 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
             performSegue(withIdentifier: "mapSegue", sender: self)
         }
         else {
-            let path = Bundle.main.path(forResource: "Location", ofType: "csv") //Hard coded these in
+            let path = Bundle.main.path(forResource: "Locations", ofType: "csv") //Hard coded these in
             let url = URL.init(fileURLWithPath: path!)
             let parser : CHCSVParser! = CHCSVParser.init(contentsOfDelimitedURL: url, delimiter: ",".utf16.first!)
             
@@ -118,13 +118,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
         if(UserDefaults.standard.bool(forKey: "isFirstTime") != true){
             UserDefaults.standard.set(true, forKey: "isFirstTime")
             performSegue(withIdentifier: "mapSegue", sender: self)
-             UserDefaults.standard.set("DecDeg", forKey: "coordinateFormat")
+             UserDefaults.standard.set("Decimal Degree D.D°", forKey: "coordinateFormat")
            //  UserDefaults.standard.set("mm/dd/yy", forKey: "dateFormat")
            //  UserDefaults.standard.set("24 Hour", forKey: "timeFormat")
-             UserDefaults.standard.set("metre", forKey: "depthFormat")
+             UserDefaults.standard.set("metric system (metre)", forKey: "depthFormat")
             UserDefaults.standard.set(45.433635, forKey: "defaultLatitude")
             UserDefaults.standard.set(12.337164, forKey: "defaultLongitude")
             UserDefaults.standard.set(2.0, forKey: "depthValue")
+             UserDefaults.standard.set([-1,-1,-1,-1,-1,-1,-1,-1], forKey: "windDirFilter")
             UserDefaults.standard.set(["Anchorage","Buoy","Marina"], forKey: "types")
              UserDefaults.standard.synchronize()
         }
@@ -165,21 +166,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
         
         print(locationData.count)
         
-        for i in 0..<1000 {
-       //     print(i)
+        for i in 0..<locationData.count {
+            print(i)
 //            if(i > 1120) {
 //                print(locationData[i])
 //            }
             let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
             let newLoc = NSManagedObject(entity: entity!, insertInto: context) as! Location
-            newLoc.windE = (locationData[i]["0"]!).toBool()!
-            newLoc.windN = (locationData[i]["1"]!).toBool()!
-            newLoc.windS = (locationData[i]["4"]!).toBool()!
-            newLoc.windW = (locationData[i]["7"]!).toBool()!
-            newLoc.windSW = (locationData[i]["6"]!).toBool()!
-            newLoc.windNW = (locationData[i]["3"]!).toBool()!
-            newLoc.windSE = (locationData[i]["5"]!).toBool()!
-            newLoc.windNE = (locationData[i]["2"]!).toBool()!
+            newLoc.windE = Int16(locationData[i]["0"]!)!
+            newLoc.windN = Int16(locationData[i]["1"]!)!
+            newLoc.windS = Int16(locationData[i]["4"]!)!
+            newLoc.windW = Int16(locationData[i]["7"]!)!
+            newLoc.windSW = Int16(locationData[i]["6"]!)!
+            newLoc.windNW = Int16(locationData[i]["3"]!)!
+            newLoc.windSE = Int16(locationData[i]["5"]!)!
+            newLoc.windNE = Int16(locationData[i]["2"]!)!
             newLoc.type = locationData[i]["16"]!
             newLoc.country = locationData[i]["12"]!
             newLoc.city = locationData[i]["14"]!
@@ -189,6 +190,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
             newLoc.island = locationData[i]["11"]!
             newLoc.name = locationData[i]["13"]!
             newLoc.depth = Double(locationData[i]["8"]!)!
+            
+            let entity1 = NSEntityDescription.entity(forEntityName: "Verification", in: context)
+            let newVer = NSManagedObject(entity: entity1!, insertInto: context) as! Verification
+            newVer.city = 0
+            newVer.depth = 0
+            newVer.name = 0
+            newVer.island = 0
+            newVer.locDescription = 0
+            newVer.coordinates = 0
+            newVer.type = 0
+            newVer.windSE = 0
+            newVer.windSW = 0
+            newVer.windNE = 0
+            newVer.windNW = 0
+            newVer.windN = 0
+            newVer.windE = 0
+            newVer.windW = 0
+            newVer.windS = 0
+            newVer.depth = 0
+            newVer.forLocation = newLoc
+            
             do {
                 try context.save()
                 //print("saved")
@@ -219,12 +241,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
     
 }
 
-extension String {
+extension Int {
     func toBool() -> Bool? {
         switch self {
-        case "True", "true", "yes", "1":
+        case 1:
             return true
-        case "False", "false", "no", "0":
+        case 0:
             return false
         default:
             return nil

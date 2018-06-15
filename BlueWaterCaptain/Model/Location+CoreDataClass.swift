@@ -2,7 +2,7 @@
 //  Location+CoreDataClass.swift
 //  BlueWaterCaptain
 //
-//  Created by Garima Aggarwal on 5/28/18.
+//  Created by Garima Aggarwal on 6/12/18.
 //  Copyright © 2018 Garima Aggarwal. All rights reserved.
 //
 //

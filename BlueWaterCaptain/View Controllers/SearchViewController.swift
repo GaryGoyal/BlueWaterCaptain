@@ -30,6 +30,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     var locationArray :Array<Location>!
     var isUserLocationUpdated = false
     var selectedLocation : Location!
+    var selectedAnnotation : CustomAnnotation!
    //let clusteringManager = FBClusteringManager()
     
 
@@ -62,23 +63,50 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
-        request.returnsObjectsAsFaults = false
-        do {
-            locationArray = try context.fetch(request) as! Array<Location>
-            dropPinsOnMap()
-            
-        } catch {
-            
-            print("Failed")
-        }
+        
     }
     
     func dropPinsOnMap() {
-        let filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) && $0.depth >  UserDefaults.standard.double(forKey: "depthValue") }
+        var filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) && $0.depth >=  UserDefaults.standard.double(forKey: "depthValue") }
+        let windFilter : Array<Int16> = UserDefaults.standard.object(forKey: "windDirFilter") as! Array<Int16>
+        for i in 0..<windFilter.count {
+            if(windFilter[i] == 1) {
+                switch (i) {
+                    
+                case 0:
+                    filteredArray = filteredArray.filter({$0.windSE == 1})
+                case 1:
+                    filteredArray = filteredArray.filter({$0.windS == 1})
+                case 2:
+                    filteredArray = filteredArray.filter({$0.windSW == 1})
+                case 3:
+                    filteredArray = filteredArray.filter({$0.windW == 1})
+                case 4:
+                    filteredArray = filteredArray.filter({$0.windNW == 1})
+                case 5:
+                    filteredArray = filteredArray.filter({$0.windN == 1})
+                case 6:
+                    filteredArray = filteredArray.filter({$0.windNE == 1})
+                case 7:
+                    filteredArray = filteredArray.filter({$0.windE == 1})
+                default :
+                    break
+                    
+                }
+                
+            }
+        }
+       // print(UserDefaults.standard.value(forKey: "windDirFilter"))
+       //  let filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) }
+        
         for location in filteredArray {
             let annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-            annotation.title = location.name
+            if(location.name?.count == 0) {
+                annotation.title = " "
+            }
+            else {
+                annotation.title = location.name
+            }
             annotation.type = location.type
             annotation.location = location
             mapView.addAnnotation(annotation)
@@ -97,6 +125,18 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         } else {
             setDefaultLocationOnMap()
         }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
+        request.returnsObjectsAsFaults = false
+        do {
+            locationArray = try context.fetch(request) as! Array<Location>
+            mapView.removeAnnotations(mapView.annotations)
+           // print(locationArray)
+            dropPinsOnMap()
+            
+        } catch {
+            
+            print("Failed")
+        }
 
     }
 
@@ -108,13 +148,19 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     //Mark - Open Side Menu
     
     @IBAction func openSideMenu(_ sender : Any) {
+        
+        let center = mapView.centerCoordinate
         if (isSideMenuOpened) {
             self.view.alpha = 1.0;
             self.view.isUserInteractionEnabled = true;
+
         }
         else {
             self.view.alpha = 0.5;
             self.view.isUserInteractionEnabled = false;
+            UserDefaults.standard.set(center.latitude.roundToDecimal(6), forKey: "centerLat")
+            UserDefaults.standard.set(center.longitude.roundToDecimal(6), forKey: "centerLong")
+            UserDefaults.standard.synchronize()
         }
         isSideMenuOpened = !isSideMenuOpened;
         self.revealViewController().revealToggle(sender)
@@ -139,8 +185,9 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             performSegue(withIdentifier: "detailsSegue", sender: self)
     }
     
-        func createNewLocation() {
-            print("create new location")
+        func createNewLocation(_ currentAnnotation : CustomAnnotation) {
+            selectedAnnotation = currentAnnotation
+           performSegue(withIdentifier: "addSegue", sender: self)
         }
     
     // MARK: - Map View delegates
@@ -214,6 +261,10 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             selectedLocation = (view as! LocationAnnotationView).location
             performSegue(withIdentifier: "detailsSegue", sender: self)
         }
+        else {
+            selectedAnnotation = view.annotation as! CustomAnnotation
+           performSegue(withIdentifier: "addSegue", sender: self)
+        }
     }
     
     // MARK: - Location manager delegates
@@ -260,12 +311,19 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             let  detailsView = segue.destination as?  DetailsViewController
             detailsView?.selectedLocation = selectedLocation
         }
+        else if segue.identifier == "addSegue" {
+            let addNav = segue.destination as? UINavigationController
+            let  addVC = addNav?.viewControllers.first as! AddEditViewController
+            addVC.newAnnotation = selectedAnnotation
+            addVC.isFromSideMenu = false
+            addVC.isNewLocation = true
+        }
     }
     
     @IBAction func unwindToSearchViewController(segue: UIStoryboardSegue) {
         print("Unwind to Root View Controller")
-        mapView.removeAnnotations(mapView.annotations)
-        dropPinsOnMap()
+      //  mapView.removeAnnotations(mapView.annotations)
+        //dropPinsOnMap()
     }
     
     
@@ -277,7 +335,7 @@ extension SearchViewController: HandleMapSearch {
         selectedPin = placemark
         // clear existing pins
         // mapView.removeAnnotations(mapView.annotations)
-        let annotation = CustomAnnotation(coordinate: placemark.coordinate)
+        let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: placemark.coordinate.latitude.roundToDecimal(6), longitude: placemark.coordinate.longitude.roundToDecimal(6)))
         annotation.title = placemark.name
         annotation.type = "new"
         annotation.location = nil
@@ -293,5 +351,12 @@ extension SearchViewController: HandleMapSearch {
          let region  = MKCoordinateRegionMakeWithDistance(coordinates, 1000, 1000)
        //  let region = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(0.05, 0.05))
         mapView.setRegion(region, animated: true)
+    }
+}
+
+extension Double {
+    func roundToDecimal(_ fractionDigits: Int) -> Double {
+        let multiplier = pow(10, Double(fractionDigits))
+        return Darwin.round(self * multiplier) / multiplier
     }
 }

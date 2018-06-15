@@ -11,7 +11,7 @@ import MapKit
 
 @objc protocol AnnotationViewDoubleTappedDelegate: class {
     func showTappedAnnotationViewDetails(_ selectedLocation : Location)
-    func createNewLocation()
+    func createNewLocation(_ currentAnnotation : CustomAnnotation)
 }
 
 class LocationAnnotationView: MKAnnotationView, UIGestureRecognizerDelegate {
@@ -34,9 +34,8 @@ class LocationAnnotationView: MKAnnotationView, UIGestureRecognizerDelegate {
             delegate?.showTappedAnnotationViewDetails(self.location!)
         }
         else {
-            delegate?.createNewLocation()
+            delegate?.createNewLocation(self.annotation! as! CustomAnnotation)
         }
-
     }
  
     // MARK: - life cycle

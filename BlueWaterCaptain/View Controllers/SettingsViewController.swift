@@ -29,13 +29,15 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
    //  @IBOutlet weak var timeEditButton: UIButton!
    //  @IBOutlet weak var dateEditButton: UIButton!
      @IBOutlet weak var degreeEditButton: UIButton!
-    var degreeArray = ["DecDeg","DecMin","DecMinSec"]
+  //  var degreeArray = ["DecDeg","DecMin","DecMinSec"]
+  //  var degreeDict = ["DecDeg" : "Decimal Degree D.D°","DecMin" : "Decimal Minutes D° M.M′","DecMinSec": "Decimal Seconds D° M′ S.S"]
+    var degreeArray = ["Decimal Degree D.D°","Decimal Minutes D° M.M′","Decimal Seconds D° M′ S.S"]
     var degreePicker = UIPickerView()
 //    var timeArray = ["24 Hour","12 Hour"]
 //    var timePicker = UIPickerView()
 //    var dateArray = ["mm/dd/yy","dd.mm.yy"]
 //    var dateFormatPicker = UIPickerView()
-    var depthArray = ["metre","km"]
+    var depthArray = ["metric system (metre)","imperial system (feet)"]
     var depthPicker = UIPickerView()
      var isSideMenuOpened = false
 
@@ -56,6 +58,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         profileImg.layer.cornerRadius = 35
         profileImg.clipsToBounds = true
         
+       // let selectedCoord = UserDefaults.standard.value(forKey: "coordinateFormat") as! String
         degreePicker.selectRow(degreeArray.index(of: UserDefaults.standard.value(forKey: "coordinateFormat") as! String)!, inComponent: 0, animated: false)
       //  dateFormatPicker.selectRow(dateArray.index(of: UserDefaults.standard.value(forKey: "dateFormat") as! String)!, inComponent: 0, animated: false)
       //  timePicker.selectRow(timeArray.index(of: UserDefaults.standard.value(forKey: "timeFormat") as! String)!, inComponent: 0, animated: false)
@@ -134,19 +137,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     
     @objc func didTapView(){
         self.view.endEditing(true)
-        if(depthLabel.isEnabled) {
-            depthLabel.isEnabled = false
-        }
-        if(degreeLabel.isEnabled) {
-            print(UserDefaults.standard.value(forKey: "coordinateFormat")!)
-            degreeLabel.isEnabled = false
-        }
-       /* if(dateLabel.isEnabled) {
-            dateLabel.isEnabled = false
-        }
-        if(timeLabel.isEnabled) {
-            timeLabel.isEnabled = false
-        }*/
     }
 
     override func didReceiveMemoryWarning() {

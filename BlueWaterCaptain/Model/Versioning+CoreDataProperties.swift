@@ -2,7 +2,7 @@
 //  Versioning+CoreDataProperties.swift
 //  BlueWaterCaptain
 //
-//  Created by Garima Aggarwal on 6/4/18.
+//  Created by Garima Aggarwal on 6/12/18.
 //  Copyright © 2018 Garima Aggarwal. All rights reserved.
 //
 //
@@ -17,10 +17,10 @@ extension Versioning {
         return NSFetchRequest<Versioning>(entityName: "Versioning")
     }
 
-    @NSManaged public var verification: Int16
     @NSManaged public var attributeId: String?
     @NSManaged public var previousValue: String?
     @NSManaged public var timeOfChange: NSDate?
+    @NSManaged public var verification: Int16
     @NSManaged public var forLocation: Location?
 
 }

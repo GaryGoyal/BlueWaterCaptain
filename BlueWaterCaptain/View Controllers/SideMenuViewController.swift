@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SideMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -54,14 +55,30 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             return 70
     }
     
-    /*
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.row == 1) {
+            performSegue(withIdentifier: "addNewLocSegue", sender: self)
+        }
+    }
+    
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "addNewLocSegue" {
+            let addNav = segue.destination as? UINavigationController
+            let  addVC = addNav?.viewControllers.first as! AddEditViewController
+            let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: UserDefaults.standard.double(forKey: "centerLat"), longitude: UserDefaults.standard.double(forKey: "centerLong")))
+            annotation.title = "new"
+            annotation.type = "new"
+            annotation.location = nil
+            addVC.newAnnotation = annotation
+            addVC.isFromSideMenu = true
+            addVC.isNewLocation = true
+        }
     }
-    */
+    
 
 }
