@@ -10,13 +10,14 @@
 		8613D8E420BBBA400091CC0B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8E120BBBA400091CC0B /* SideMenuViewController.swift */; };
 		8613D8E520BBBA400091CC0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8E220BBBA400091CC0B /* ViewController.swift */; };
 		8613D8E620BBBA400091CC0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8E320BBBA400091CC0B /* SearchViewController.swift */; };
-		8613D8F220BBBAD60091CC0B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8F120BBBAD60091CC0B /* CustomAnnotation.swift */; };
 		8613D8F420BBBAE80091CC0B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8F320BBBAE80091CC0B /* SettingsViewController.swift */; };
 		8613D8F720BBBB0C0091CC0B /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8F620BBBB0C0091CC0B /* LocationSearchTable.swift */; };
 		8613D8FA20BBBB230091CC0B /* LocationResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8F820BBBB230091CC0B /* LocationResultCell.swift */; };
 		8613D8FB20BBBB230091CC0B /* IntroLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8F920BBBB230091CC0B /* IntroLabel.swift */; };
 		8613D8FE20BBBCB50091CC0B /* BlueWaterCaptain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8FC20BBBCB50091CC0B /* BlueWaterCaptain.xcdatamodeld */; };
 		8613D90520BBBFB60091CC0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D90420BBBFB60091CC0B /* AppDelegate.swift */; };
+		86170E8220D7D88C00577D3B /* LocationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86170E8120D7D88C00577D3B /* LocationImage.swift */; };
+		86170E8420D7D89800577D3B /* LocationImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86170E8320D7D89800577D3B /* LocationImage.xib */; };
 		862932B120C7B66000061CB7 /* Locations.csv in Resources */ = {isa = PBXBuildFile; fileRef = 862932B020C7B66000061CB7 /* Locations.csv */; };
 		8636390020C265D600C04D62 /* CalculationsAndConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863638FF20C265D600C04D62 /* CalculationsAndConversions.swift */; };
 		8636390620C28C2000C04D62 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8636390520C28C2000C04D62 /* FilterViewController.swift */; };
@@ -43,13 +44,14 @@
 		86CF6F2D20BF0C0800C47D1E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CF6F2C20BF0C0800C47D1E /* LoginViewController.swift */; };
 		86CF6F2F20BF0C1800C47D1E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CF6F2E20BF0C1800C47D1E /* RegisterViewController.swift */; };
 		86D860AE20CC13220067CB11 /* NewLocationImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D860AD20CC13220067CB11 /* NewLocationImage.swift */; };
+		89A325C64608AD20E3A23FD8 /* Pods_BlueWaterCaptain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF19A04AE19E360990E51640 /* Pods_BlueWaterCaptain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BF82BD0E40A4759B8CC3CFE /* Pods-BlueWaterCaptain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWaterCaptain.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWaterCaptain/Pods-BlueWaterCaptain.release.xcconfig"; sourceTree = "<group>"; };
 		8613D8E120BBBA400091CC0B /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		8613D8E220BBBA400091CC0B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8613D8E320BBBA400091CC0B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		8613D8F120BBBAD60091CC0B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		8613D8F320BBBAE80091CC0B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8613D8F620BBBB0C0091CC0B /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		8613D8F820BBBB230091CC0B /* LocationResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResultCell.swift; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		8613D90320BBBFB60091CC0B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8613D90420BBBFB60091CC0B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8613D90620BBBFCD0091CC0B /* BlueWaterCaptain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueWaterCaptain-Bridging-Header.h"; sourceTree = "<group>"; };
+		86170E8120D7D88C00577D3B /* LocationImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationImage.swift; sourceTree = "<group>"; };
+		86170E8320D7D89800577D3B /* LocationImage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationImage.xib; sourceTree = "<group>"; };
 		862932B020C7B66000061CB7 /* Locations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Locations.csv; sourceTree = "<group>"; };
 		863638FF20C265D600C04D62 /* CalculationsAndConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsAndConversions.swift; sourceTree = "<group>"; };
 		8636390520C28C2000C04D62 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		86CF6F2C20BF0C0800C47D1E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		86CF6F2E20BF0C1800C47D1E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		86D860AD20CC13220067CB11 /* NewLocationImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationImage.swift; sourceTree = "<group>"; };
+		DF19A04AE19E360990E51640 /* Pods_BlueWaterCaptain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BlueWaterCaptain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC9C879E0BC4E5212F1A08E1 /* Pods-BlueWaterCaptain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWaterCaptain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWaterCaptain/Pods-BlueWaterCaptain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +103,22 @@
 			files = (
 				8640D85120B99DC600F2DF7B /* MapKit.framework in Frameworks */,
 				8640D81820B9237700F2DF7B /* CoreLocation.framework in Frameworks */,
+				89A325C64608AD20E3A23FD8 /* Pods_BlueWaterCaptain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76D78AE60EA454992C33BCF7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C879E0BC4E5212F1A08E1 /* Pods-BlueWaterCaptain.debug.xcconfig */,
+				2BF82BD0E40A4759B8CC3CFE /* Pods-BlueWaterCaptain.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8613D8DD20BBB9C30091CC0B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,9 +167,10 @@
 				86B5F84E20D150E70015D13D /* ArcView.swift */,
 				8613D8F920BBBB230091CC0B /* IntroLabel.swift */,
 				8613D8F820BBBB230091CC0B /* LocationResultCell.swift */,
-				8613D8F120BBBAD60091CC0B /* CustomAnnotation.swift */,
 				86CF6F2A20BEA6D900C47D1E /* LocationAnnotationView.swift */,
 				86D860AD20CC13220067CB11 /* NewLocationImage.swift */,
+				86170E8120D7D88C00577D3B /* LocationImage.swift */,
+				86170E8320D7D89800577D3B /* LocationImage.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -171,6 +188,7 @@
 			children = (
 				8640D85020B99DC500F2DF7B /* MapKit.framework */,
 				8640D81720B9237700F2DF7B /* CoreLocation.framework */,
+				DF19A04AE19E360990E51640 /* Pods_BlueWaterCaptain.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,6 +208,7 @@
 				86CF445720B6D6A200C34247 /* BlueWaterCaptain */,
 				86CF445620B6D6A200C34247 /* Products */,
 				8640D81620B9237700F2DF7B /* Frameworks */,
+				76D78AE60EA454992C33BCF7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,7 +226,6 @@
 				862932B020C7B66000061CB7 /* Locations.csv */,
 				86CF6F2320BD14EA00C47D1E /* Location.csv */,
 				863638FE20C265A400C04D62 /* Utility Classess */,
-				86CF6F2520BD32C800C47D1E /* FBAnnotationClustering */,
 				86CF6F2220BD140800C47D1E /* CHCSVParser.h */,
 				86CF6F2020BD13FF00C47D1E /* CHCSVParser.m */,
 				8613D8DF20BBB9DE0091CC0B /* Supporting Files */,
@@ -224,13 +242,6 @@
 			path = BlueWaterCaptain;
 			sourceTree = "<group>";
 		};
-		86CF6F2520BD32C800C47D1E /* FBAnnotationClustering */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FBAnnotationClustering;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,9 +249,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86CF446A20B6D6A200C34247 /* Build configuration list for PBXNativeTarget "BlueWaterCaptain" */;
 			buildPhases = (
+				AC59588E5A8ED34C59C73E6F /* [CP] Check Pods Manifest.lock */,
 				86CF445120B6D6A200C34247 /* Sources */,
 				86CF445220B6D6A200C34247 /* Frameworks */,
 				86CF445320B6D6A200C34247 /* Resources */,
+				6D5B5E60E5AB48E74D9E6D42 /* [CP] Embed Pods Frameworks */,
+				50823319FD6FE56ECDBDB6F2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,11 +309,66 @@
 				86CF446320B6D6A200C34247 /* Assets.xcassets in Resources */,
 				86CF445E20B6D6A200C34247 /* Main.storyboard in Resources */,
 				86CF6F2420BD14EA00C47D1E /* Location.csv in Resources */,
+				86170E8420D7D89800577D3B /* LocationImage.xib in Resources */,
 				862932B120C7B66000061CB7 /* Locations.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50823319FD6FE56ECDBDB6F2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueWaterCaptain/Pods-BlueWaterCaptain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D5B5E60E5AB48E74D9E6D42 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BlueWaterCaptain/Pods-BlueWaterCaptain-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FBAnnotationClusteringSwift/FBAnnotationClusteringSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAnnotationClusteringSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlueWaterCaptain/Pods-BlueWaterCaptain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC59588E5A8ED34C59C73E6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BlueWaterCaptain-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86CF445120B6D6A200C34247 /* Sources */ = {
@@ -314,6 +383,7 @@
 				86B5F82720CFFAB40015D13D /* Versioning+CoreDataProperties.swift in Sources */,
 				8613D8E420BBBA400091CC0B /* SideMenuViewController.swift in Sources */,
 				8640D82720B935EA00F2DF7B /* SWRevealViewController.m in Sources */,
+				86170E8220D7D88C00577D3B /* LocationImage.swift in Sources */,
 				8613D90520BBBFB60091CC0B /* AppDelegate.swift in Sources */,
 				86B5F84F20D150E80015D13D /* ArcView.swift in Sources */,
 				86CF6F2B20BEA6D900C47D1E /* LocationAnnotationView.swift in Sources */,
@@ -331,7 +401,6 @@
 				86CF6F2D20BF0C0800C47D1E /* LoginViewController.swift in Sources */,
 				86B5F82620CFFAB40015D13D /* Versioning+CoreDataClass.swift in Sources */,
 				8613D8F420BBBAE80091CC0B /* SettingsViewController.swift in Sources */,
-				8613D8F220BBBAD60091CC0B /* CustomAnnotation.swift in Sources */,
 				86CF6F2920BE880F00C47D1E /* DetailsViewController.swift in Sources */,
 				8636390020C265D600C04D62 /* CalculationsAndConversions.swift in Sources */,
 				86D860AE20CC13220067CB11 /* NewLocationImage.swift in Sources */,
@@ -473,6 +542,7 @@
 		};
 		86CF446B20B6D6A200C34247 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC9C879E0BC4E5212F1A08E1 /* Pods-BlueWaterCaptain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -484,13 +554,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlueWaterCaptain/Supporting Files/BlueWaterCaptain-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		86CF446C20B6D6A200C34247 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BF82BD0E40A4759B8CC3CFE /* Pods-BlueWaterCaptain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -501,7 +572,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.BlueWaterCaptain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlueWaterCaptain/Supporting Files/BlueWaterCaptain-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

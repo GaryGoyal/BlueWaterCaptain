@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreData
+import FBAnnotationClusteringSwift
 
 class DetailsViewController: UIViewController, MKMapViewDelegate {
     
@@ -48,10 +49,11 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     func configureView() {
 
         mapView.removeAnnotations(mapView.annotations)
-        let annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude))
+        let annotation = FBAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
         annotation.title = selectedLocation.name
         annotation.type = selectedLocation.type
-        annotation.location = selectedLocation
+        //annotation.location = selectedLocation
         mapView.addAnnotation(annotation)
         
         let span = MKCoordinateSpanMake(0.05, 0.05)
@@ -173,7 +175,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func editLocation(_ sender : Any) {
-      //Gary  //self.performSegue(withIdentifier: "editSegue", sender: self)
+      self.performSegue(withIdentifier: "editSegue", sender: self)
     }
     
     @IBAction func validateChanges(_ sender : Any) {
@@ -196,7 +198,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         
         
-        if  (annotation is CustomAnnotation) {
+        if  (annotation is FBAnnotation) {
             
             if annotationView == nil {
                 annotationView = LocationAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -205,13 +207,13 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
                 annotationView?.annotation = annotation
             }
             
-            if((annotation as! CustomAnnotation).type == "Marina") {
+            if((annotation as! FBAnnotation).type == "Marina") {
                 annotationView?.image = UIImage(named: "marina")
             }
-            else if ((annotation as! CustomAnnotation).type == "Buoy") {
+            else if ((annotation as! FBAnnotation).type == "Buoy") {
                 annotationView?.image = UIImage(named: "bouy")
             }
-            else if ((annotation as! CustomAnnotation).type == "Anchorage") {
+            else if ((annotation as! FBAnnotation).type == "Anchorage") {
                 annotationView?.image = UIImage(named: "anchor")
             }
             else {

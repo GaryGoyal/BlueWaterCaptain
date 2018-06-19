@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import FBAnnotationClusteringSwift
 
 class SideMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -70,10 +71,10 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         if segue.identifier == "addNewLocSegue" {
             let addNav = segue.destination as? UINavigationController
             let  addVC = addNav?.viewControllers.first as! AddEditViewController
-            let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: UserDefaults.standard.double(forKey: "centerLat"), longitude: UserDefaults.standard.double(forKey: "centerLong")))
+            let annotation = FBAnnotation()
+             annotation.coordinate = CLLocationCoordinate2D(latitude: UserDefaults.standard.double(forKey: "centerLat"), longitude: UserDefaults.standard.double(forKey: "centerLong"))
             annotation.title = "new"
             annotation.type = "new"
-            annotation.location = nil
             addVC.newAnnotation = annotation
             addVC.isFromSideMenu = true
             addVC.isNewLocation = true

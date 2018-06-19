@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import CoreData
+import FBAnnotationClusteringSwift
 //import FBClusteringManager
 
 protocol HandleMapSearch {
@@ -21,17 +22,18 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
 
 
     var isSideMenuOpened = false
-    var revealViewController : SWRevealViewController!
+    var revealViewController1 : SWRevealViewController!
     let locationManager = CLLocationManager()
     @IBOutlet weak var mapView: MKMapView!
     var resultSearchController:UISearchController? = nil
     var selectedPin:MKPlacemark? = nil
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var locationArray :Array<Location>!
+    var  filteredArray :Array<Location>!
     var isUserLocationUpdated = false
     var selectedLocation : Location!
-    var selectedAnnotation : CustomAnnotation!
-   //let clusteringManager = FBClusteringManager()
+    var selectedAnnotation : FBAnnotation!
+   let clusteringManager = FBClusteringManager()
     
 
     @IBOutlet weak var menuButton : UIBarButtonItem!
@@ -63,11 +65,11 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
         
-        
+      
     }
     
     func dropPinsOnMap() {
-        var filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) && $0.depth >=  UserDefaults.standard.double(forKey: "depthValue") }
+      filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) && $0.depth >=  UserDefaults.standard.double(forKey: "depthValue") }
         let windFilter : Array<Int16> = UserDefaults.standard.object(forKey: "windDirFilter") as! Array<Int16>
         for i in 0..<windFilter.count {
             if(windFilter[i] == 1) {
@@ -96,11 +98,26 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
                 
             }
         }
-       // print(UserDefaults.standard.value(forKey: "windDirFilter"))
-       //  let filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) }
-        
-        for location in filteredArray {
-            let annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+
+        var array:[FBAnnotation] = []
+        print(filteredArray.count)
+        for i in 0..<filteredArray.count {
+       // for location in filteredArray {
+           /* let annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+            if(location.name?.count == 0) {
+                annotation.title = " "
+            }
+            else {
+                annotation.title = location.name
+            }
+            
+            let clusteringManager = FBClusteringManager()
+            annotation.type = location.type
+            annotation.location = location
+            mapView.addAnnotation(annotation)*/
+            let location = filteredArray[i]
+            let annotation = FBAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             if(location.name?.count == 0) {
                 annotation.title = " "
             }
@@ -108,9 +125,11 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
                 annotation.title = location.name
             }
             annotation.type = location.type
-            annotation.location = location
-            mapView.addAnnotation(annotation)
+            annotation.locIndex = i
+             //annotation.location = location
+            array.append(annotation)
         }
+        clusteringManager.add(annotations: array)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,8 +148,8 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         request.returnsObjectsAsFaults = false
         do {
             locationArray = try context.fetch(request) as! Array<Location>
-            mapView.removeAnnotations(mapView.annotations)
-           // print(locationArray)
+          //  mapView.removeAnnotations(mapView.annotations)
+            clusteringManager.removeAll()
             dropPinsOnMap()
             
         } catch {
@@ -185,7 +204,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             performSegue(withIdentifier: "detailsSegue", sender: self)
     }
     
-        func createNewLocation(_ currentAnnotation : CustomAnnotation) {
+        func createNewLocation(_ currentAnnotation : FBAnnotation) {
             selectedAnnotation = currentAnnotation
            performSegue(withIdentifier: "addSegue", sender: self)
         }
@@ -202,8 +221,78 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         }
     }
     
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let mapBoundsWidth = Double(mapView.bounds.size.width)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let mapRectWidth = mapView.visibleMapRect.size.width
+            let scale = mapBoundsWidth / mapRectWidth
+            
+            let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: mapView.visibleMapRect, zoomScale:scale)
+            
+            DispatchQueue.main.async {
+                self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
+            }
+        }
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if(annotation is MKUserLocation) {
+            return nil
+        }
+        
+        var reuseId = ""
+        if annotation is FBAnnotationCluster {
+            reuseId = "Cluster"
+            var clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            if clusterView == nil {
+                clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, configuration: FBAnnotationClusterViewConfiguration.default())
+            } else {
+                clusterView?.annotation = annotation
+            }
+            return clusterView
+        }
+        else {
+            reuseId = "Pin"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) //as? MKPinAnnotationView
+            if annotationView == nil {
+                annotationView = LocationAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                annotationView?.canShowCallout = true
+            } else {
+                annotationView?.annotation = annotation
+            }
+            (annotationView as! LocationAnnotationView).delegate = self
+            if((annotation as! FBAnnotation).type == "Marina") {
+                annotationView?.image = UIImage(named: "marina")
+                (annotationView as! LocationAnnotationView).type = "Marina"
+            }
+            else if ((annotation as! FBAnnotation).type == "Buoy") {
+                annotationView?.image = UIImage(named: "bouy")
+                (annotationView as! LocationAnnotationView).type = "Buoy"
+            }
+            else if ((annotation as! FBAnnotation).type == "Anchorage") {
+                annotationView?.image = UIImage(named: "anchor")
+                (annotationView as! LocationAnnotationView).type = "Anchorage"
+            }
+            else {
+                annotationView?.image = UIImage(named: "mapMarker")
+                (annotationView as! LocationAnnotationView).type = "New"
+            }
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = btn
+            if((annotationView as! LocationAnnotationView).type != "New")  {
+                (annotationView as! LocationAnnotationView).location = filteredArray[(annotation as! FBAnnotation).locIndex!]
+            }
+            else {
+                (annotationView as! LocationAnnotationView).location = nil
+            }
+            return annotationView
+        }
+    }
+    
+    
+  /*  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         
         //        if !(annotation is MKPointAnnotation) {
@@ -253,16 +342,17 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         }
         return annotationView
         
-    }
+    }*/
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 
         if ((view as! LocationAnnotationView).type != "New") {
             selectedLocation = (view as! LocationAnnotationView).location
+            print(selectedLocation)
             performSegue(withIdentifier: "detailsSegue", sender: self)
         }
         else {
-            selectedAnnotation = view.annotation as! CustomAnnotation
+            selectedAnnotation = view.annotation as! FBAnnotation
            performSegue(withIdentifier: "addSegue", sender: self)
         }
     }
@@ -335,11 +425,13 @@ extension SearchViewController: HandleMapSearch {
         selectedPin = placemark
         // clear existing pins
         // mapView.removeAnnotations(mapView.annotations)
-        let annotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: placemark.coordinate.latitude.roundToDecimal(6), longitude: placemark.coordinate.longitude.roundToDecimal(6)))
+        let annotation = FBAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: placemark.coordinate.latitude.roundToDecimal(6), longitude: placemark.coordinate.longitude.roundToDecimal(6))
         annotation.title = placemark.name
-        annotation.type = "new"
-        annotation.location = nil
+        annotation.type = "New"
+      //  annotation.location = nil
         mapView.addAnnotation(annotation)
+        clusteringManager.add(annotations: [annotation])
 //        let span = MKCoordinateSpanMake(0.05, 0.05)
 //        let region = MKCoordinateRegionMake(placemark.coordinate, span)
           let region  = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 1000, 1000)
@@ -360,3 +452,4 @@ extension Double {
         return Darwin.round(self * multiplier) / multiplier
     }
 }
+

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreData
+import FBAnnotationClusteringSwift
 
 class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ArcViewDelegate {
     
@@ -112,13 +113,14 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     @IBOutlet weak var photoView: UIView!
     @IBOutlet weak var photoViewheight :  NSLayoutConstraint!
     
+    var currentPhotoViewHeight : CGFloat = 50.0
     var isSideMenuOpened = false
     var isFromSideMenu = false
-    var revealViewController : SWRevealViewController!
+    var revealViewController1 : SWRevealViewController!
     var isNewLocation = false
     var leftButton : UIBarButtonItem!
     var location : Location!
-    var newAnnotation : CustomAnnotation!
+    var newAnnotation : FBAnnotation!
     var changesArray = [Versioning]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let maxWidth = UIScreen.main.bounds.size.width - 120.0
@@ -160,7 +162,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
         }
         else {
             self.navigationItem.title = "Edit"
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Versioning")
+            var request = NSFetchRequest<NSFetchRequestResult>(entityName: "Versioning")
             request.predicate = NSPredicate(format: "forLocation == %@", location!)
             request.returnsObjectsAsFaults = false
             do {
@@ -170,8 +172,27 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
                 print("Failed")
             }
              windDirArray = [location.windSE,location.windS,location.windSW,location.windW,location.windNW,location.windN,location.windNE,location.windE]
+            
+            request = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
+            request.predicate = NSPredicate(format: "forLocation == %@", location!)
+            
+            do {
+                let images = try context.fetch(request) as! Array<Images>
+                currentPhotoViewHeight = 50
+                for i in 0..<images.count {
+                    let imgView = LocationImage.instanceFromNibWithFrame(frame: CGRect(x: 0, y : Int(currentPhotoViewHeight), width : Int(UIScreen.main.bounds.size.width), height : 215)) as! LocationImage
+                    imgView.photoView.image =  UIImage(data: images[i].image! as Data)
+                    imgView.duplicateLabel.text = "(0)"
+                    imgView.verifyLabel.text = String(images[i].verification)
+                    photoView.addSubview(imgView)
+                    currentPhotoViewHeight = currentPhotoViewHeight + 215
+                }
+                photoViewheight.constant = currentPhotoViewHeight //CGFloat(50 + (images.count * 215))
+            } catch {
+                print("Failed")
+            }
         }
-            arcView.delegate = self
+        arcView.delegate = self
         arcView.isFilter = false
         arcView.createArcWithWidth(arcWidth: 15.0, andWindArray: windDirArray)
         leftButton.tintColor = UIColor.init(red: 18/255.0, green: 165/255.0, blue: 244/255.0, alpha: 1)
@@ -212,23 +233,28 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     }
     
     func addMapPin() {
-        
-        
-        let annotation : CustomAnnotation!
+
         if isNewLocation {
+            let annotation : FBAnnotation
             annotation = newAnnotation
+            mapView.addAnnotation(annotation)
+            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude), span: span)
+            //  let region  = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 100000, 100000)
+            mapView.setRegion(region, animated: true)
         }
         else {
-            annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+            let annotation = FBAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             annotation.title = location.name
             annotation.type = location.type
+            mapView.addAnnotation(annotation)
+            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude), span: span)
+            //  let region  = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 100000, 100000)
+            mapView.setRegion(region, animated: true)
         }
-        
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude), span: span)
-        //  let region  = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 100000, 100000)
-        mapView.setRegion(region, animated: true)
+    
     }
     
     
@@ -855,7 +881,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         
         
-        if  (annotation is CustomAnnotation) {
+        if  (annotation is FBAnnotation) {
             
             if annotationView == nil {
                 annotationView = LocationAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -864,13 +890,13 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
                 annotationView?.annotation = annotation
             }
             
-            if((annotation as! CustomAnnotation).type == "Marina") {
+            if((annotation as! FBAnnotation).type == "Marina") {
                 annotationView?.image = UIImage(named: "marina")
             }
-            else if ((annotation as! CustomAnnotation).type == "Buoy") {
+            else if ((annotation as! FBAnnotation).type == "Buoy") {
                 annotationView?.image = UIImage(named: "bouy")
             }
-            else if ((annotation as! CustomAnnotation).type == "Anchorage") {
+            else if ((annotation as! FBAnnotation).type == "Anchorage") {
                 annotationView?.image = UIImage(named: "anchor")
             }
             else {
@@ -878,6 +904,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             }
             
         }
+    
         return annotationView
         
     }
@@ -965,7 +992,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
         self.tableView.reloadData()
         picker.dismiss(animated:true, completion: nil)*/
         
-        let img : NewLocationImage = NewLocationImage(frame: CGRect(x: 0, y:50 + CGFloat(imageArray.count * 180), width:self.view.frame.size.width, height: 180))
+        let img : NewLocationImage = NewLocationImage(frame: CGRect(x: 0, y:currentPhotoViewHeight + CGFloat(imageArray.count * 180), width:self.view.frame.size.width, height: 180))
         img.backgroundColor = UIColor.white
         
         let separator = UIView(frame:  CGRect(x: 15, y:0, width:self.view.frame.size.width - 15, height: 0.5))

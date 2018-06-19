@@ -8,10 +8,11 @@
 
 import UIKit
 import MapKit
+import FBAnnotationClusteringSwift
 
 @objc protocol AnnotationViewDoubleTappedDelegate: class {
     func showTappedAnnotationViewDetails(_ selectedLocation : Location)
-    func createNewLocation(_ currentAnnotation : CustomAnnotation)
+    func createNewLocation(_ currentAnnotation : FBAnnotation)
 }
 
 class LocationAnnotationView: MKAnnotationView, UIGestureRecognizerDelegate {
@@ -34,7 +35,7 @@ class LocationAnnotationView: MKAnnotationView, UIGestureRecognizerDelegate {
             delegate?.showTappedAnnotationViewDetails(self.location!)
         }
         else {
-            delegate?.createNewLocation(self.annotation! as! CustomAnnotation)
+            delegate?.createNewLocation(self.annotation! as! FBAnnotation)
         }
     }
  
