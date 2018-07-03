@@ -52,6 +52,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
     
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
+        
+        
        
     }
 

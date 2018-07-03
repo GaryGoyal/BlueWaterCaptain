@@ -1,9 +1,8 @@
 //
 //  Location+CoreDataProperties.swift
-//  BlueWaterCaptain
+//  
 //
-//  Created by Garima Aggarwal on 6/12/18.
-//  Copyright © 2018 Garima Aggarwal. All rights reserved.
+//  Created by Garima Aggarwal on 7/3/18.
 //
 //
 
@@ -37,6 +36,7 @@ extension Location {
     @NSManaged public var images: NSSet?
     @NSManaged public var verifications: Verification?
     @NSManaged public var versions: NSSet?
+    @NSManaged public var createdBy: User?
 
 }
 

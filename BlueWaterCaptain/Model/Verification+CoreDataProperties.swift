@@ -1,9 +1,8 @@
 //
 //  Verification+CoreDataProperties.swift
-//  BlueWaterCaptain
+//  
 //
-//  Created by Garima Aggarwal on 6/12/18.
-//  Copyright © 2018 Garima Aggarwal. All rights reserved.
+//  Created by Garima Aggarwal on 7/3/18.
 //
 //
 
@@ -27,11 +26,11 @@ extension Verification {
     @NSManaged public var windE: Int16
     @NSManaged public var windN: Int16
     @NSManaged public var windNE: Int16
-    @NSManaged public var windNW: Int32
+    @NSManaged public var windNW: Int16
     @NSManaged public var windS: Int16
     @NSManaged public var windSE: Int16
-    @NSManaged public var windSW: Int16
     @NSManaged public var windW: Int16
+    @NSManaged public var windSW: Int16
     @NSManaged public var forLocation: Location?
 
 }

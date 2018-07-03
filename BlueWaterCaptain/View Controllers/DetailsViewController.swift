@@ -38,12 +38,25 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         
         mapView.layer.borderColor = UIColor.lightGray.cgColor
         mapView.layer.borderWidth = 0.5
-        configureView()
+
         
      }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
+        request.predicate = NSPredicate(format: "SELF == %@", selectedLocation!)
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(request) as! Array<Location>
+            if(results.count > 0) {
+                selectedLocation = results.first
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
+        configureView()
     }
     
     func configureView() {
@@ -53,7 +66,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         annotation.coordinate = CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
         annotation.title = selectedLocation.name
         annotation.type = selectedLocation.type
-        //annotation.location = selectedLocation
+        mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(annotation)
         
         let span = MKCoordinateSpanMake(0.05, 0.05)

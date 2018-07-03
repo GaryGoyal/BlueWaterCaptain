@@ -64,8 +64,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         definesPresentationContext = true
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
-        
-      
+
     }
     
     func dropPinsOnMap() {
@@ -130,6 +129,7 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             array.append(annotation)
         }
         clusteringManager.add(annotations: array)
+        self.mapView(mapView, regionDidChangeAnimated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,13 +149,17 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         do {
             locationArray = try context.fetch(request) as! Array<Location>
           //  mapView.removeAnnotations(mapView.annotations)
-            clusteringManager.removeAll()
-            dropPinsOnMap()
+            
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.clusteringManager.removeAll()
+                self.dropPinsOnMap()
+            })
             
         } catch {
             
             print("Failed")
         }
+    
 
     }
 
@@ -212,14 +216,16 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     // MARK: - Map View delegates
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        if(!isUserLocationUpdated) {
+     //   if(!isUserLocationUpdated) {
         let span = MKCoordinateSpanMake(5, 5)
         let region = MKCoordinateRegion(center: userLocation.coordinate, span: span)
            //  let region  = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 100000, 100000)
             mapView.setRegion(region, animated: true)
             isUserLocationUpdated = true
-        }
+      //  }
     }
+    
+
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
@@ -411,9 +417,13 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     }
     
     @IBAction func unwindToSearchViewController(segue: UIStoryboardSegue) {
-        print("Unwind to Root View Controller")
-      //  mapView.removeAnnotations(mapView.annotations)
-        //dropPinsOnMap()
+//        print("Unwind to Root View Controller")
+//      //  mapView.removeAnnotations(mapView.annotations)
+//        //dropPinsOnMap()
+//        let span = MKCoordinateSpanMake(5, 5)
+//        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
+//        mapView.setRegion(region, animated: true)
+//        self.mapView(mapView, regionDidChangeAnimated: true)
     }
     
     

@@ -1,9 +1,8 @@
 //
 //  Images+CoreDataProperties.swift
-//  BlueWaterCaptain
+//  
 //
-//  Created by Garima Aggarwal on 6/12/18.
-//  Copyright © 2018 Garima Aggarwal. All rights reserved.
+//  Created by Garima Aggarwal on 7/3/18.
 //
 //
 
@@ -20,5 +19,24 @@ extension Images {
     @NSManaged public var image: NSData?
     @NSManaged public var verification: Int16
     @NSManaged public var forLocation: Location?
+    @NSManaged public var addedBy: User?
+    @NSManaged public var verifiedBy: NSSet?
+
+}
+
+// MARK: Generated accessors for verifiedBy
+extension Images {
+
+    @objc(addVerifiedByObject:)
+    @NSManaged public func addToVerifiedBy(_ value: User)
+
+    @objc(removeVerifiedByObject:)
+    @NSManaged public func removeFromVerifiedBy(_ value: User)
+
+    @objc(addVerifiedBy:)
+    @NSManaged public func addToVerifiedBy(_ values: NSSet)
+
+    @objc(removeVerifiedBy:)
+    @NSManaged public func removeFromVerifiedBy(_ values: NSSet)
 
 }
