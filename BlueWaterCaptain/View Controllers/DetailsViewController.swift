@@ -33,12 +33,13 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedLocation : Location!
     var imagesArray = [Images]()
+    var selLatitude : Double!
+    var selLongitude : Double!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.layer.borderColor = UIColor.lightGray.cgColor
         mapView.layer.borderWidth = 0.5
-
         
      }
     
@@ -50,53 +51,56 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
             let results = try context.fetch(request) as! Array<Location>
             if(results.count > 0) {
                 selectedLocation = results.first
+                selLatitude = selectedLocation.coordinates!.latitude
+                selLongitude = selectedLocation.coordinates!.longitude
+                configureView()
             }
             
         } catch {
             
             print("Failed")
         }
-        configureView()
     }
     
     func configureView() {
 
-        mapView.removeAnnotations(mapView.annotations)
         let annotation = FBAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
-        annotation.title = selectedLocation.name
-        annotation.type = selectedLocation.type
+        annotation.coordinate = CLLocationCoordinate2D(latitude: selLatitude, longitude: selLongitude)
+        annotation.title = selectedLocation.name?.name
+        annotation.type = selectedLocation.type?.type
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(annotation)
         
         let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude), span: span)
-        //  let region  = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 100000, 100000)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: selLatitude, longitude: selLongitude), span: span)
         mapView.setRegion(region, animated: true)
-        navBar.topItem?.title = selectedLocation.name
-        if((selectedLocation.name?.count)! > 0) {
-            nameLabel.text = selectedLocation.name
+        navBar.topItem?.title = selectedLocation.name?.name
+        if((selectedLocation.name?.name?.count)! > 0) {
+            nameLabel.text = selectedLocation.name?.name
         }
         else {
             nameLabel.text = " "
         }
-        if((selectedLocation.island?.count)! == 0 && (selectedLocation.city?.count)! == 0) {
+        if((selectedLocation.island?.island?.count)! == 0 && (selectedLocation.city?.city?.count)! == 0) {
             islandLabel.text = " "
         }
+        else if (selectedLocation.island?.island?.count == 0) {
+            islandLabel.text = selectedLocation.city?.city!
+        }
         else {
-            islandLabel.text = selectedLocation.island! + ", " + selectedLocation.city!
+            islandLabel.text = (selectedLocation.island?.island!)! + ", " + (selectedLocation.city?.city!)!
         }
         
-        descLabel.text = selectedLocation.locDescription
+        descLabel.text = selectedLocation.locdescription?.locDescription
         configureLabels()
         
-        if(selectedLocation.type == "Marina") {
+        if(selectedLocation.type?.type == "Marina") {
             mapMarker.image = UIImage(named: "marina")
         }
-        else if (selectedLocation.type == "Buoy") {
+        else if (selectedLocation.type?.type == "Buoy") {
             mapMarker.image = UIImage(named: "bouy")
         }
-        else if (selectedLocation.type == "Anchorage") {
+        else if (selectedLocation.type?.type == "Anchorage") {
             mapMarker.image = UIImage(named: "anchor")
         }
         else {
@@ -105,7 +109,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         
         var height : CGFloat  = 0.0
         
-        arcView.createArcWithWidth(arcWidth: 4.0, andWindArray: [selectedLocation.windSE,selectedLocation.windS,selectedLocation.windSW,selectedLocation.windW,selectedLocation.windNW,selectedLocation.windN,selectedLocation.windNE,selectedLocation.windE])
+        arcView.createArcWithWidth(arcWidth: 4.0, andWindArray: [(selectedLocation.windSE?.windSE)!,(selectedLocation.windS?.windS)!,(selectedLocation.windSW?.windSW)!,(selectedLocation.windW?.windW)!,(selectedLocation.windNW?.windNW)!,(selectedLocation.windN?.windN)!,(selectedLocation.windNE?.windNE)!,(selectedLocation.windE?.windE)!])
         arcView.isUserInteractionEnabled = false
         changesViewHeight.constant = 0.0
         changesView.isHidden = true
@@ -151,32 +155,32 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
         let coordinateFormat = UserDefaults.standard.value(forKey: "coordinateFormat") as! String
         switch coordinateFormat {
         case "Decimal Degree D.D°":
-            coordinatesLabel.text = String(selectedLocation.latitude) + "°, " + String(selectedLocation.longitude) + "°"
+            coordinatesLabel.text = String(selLatitude) + "°, " + String(selLongitude) + "°"
             break
         case "Decimal Minutes D° M.M′":
-            coordinatesLabel.text = calculationObj.convertFromDegreeDecimalToDegreeMinutes(selectedLocation.latitude, forType: "latitude") + ", " + calculationObj.convertFromDegreeDecimalToDegreeMinutes(selectedLocation.longitude, forType: "longitude")
+            coordinatesLabel.text = calculationObj.convertFromDegreeDecimalToDegreeMinutes(selLatitude, forType: "latitude") + ", " + calculationObj.convertFromDegreeDecimalToDegreeMinutes(selLongitude, forType: "longitude")
             break
         case "Decimal Seconds D° M′ S.S":
-            coordinatesLabel.text = calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds(selectedLocation.latitude, forType: "latitude") + ", " + calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds(selectedLocation.longitude, forType: "longitude")
+            coordinatesLabel.text = calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds((selLatitude)!, forType: "latitude") + ", " + calculationObj.convertFromDegreeDecimalToDegreeMinutesSeconds((selLongitude)!, forType: "longitude")
             break
         default:
-             coordinatesLabel.text = String(selectedLocation.latitude) + "°, " + String(selectedLocation.longitude) + "°"
+            coordinatesLabel.text = String(selLatitude) + "°, " + String(selLongitude) + "°"
             break
         }
         
         let depthFormat = UserDefaults.standard.value(forKey: "depthFormat") as! String
         switch depthFormat {
         case "metric system (metre)":
-            depthLabel.text = String(selectedLocation.depth) + " metre"
-            depthLabelTop.text = String(selectedLocation.depth) + " m"
+            if let depth = selectedLocation.depth?.depth {
+                depthLabel.text = String(depth) + " metre"
+                depthLabelTop.text = String(depth) + " m"
+            }
             break
         case "imperial system (feet)":
-            depthLabel.text = String(calculationObj.convertMetreToFeet(selectedLocation.depth)) + " feet"
-            depthLabelTop.text = String(calculationObj.convertMetreToFeet(selectedLocation.depth)) + " feet"
+            depthLabel.text = String(calculationObj.convertMetreToFeet((selectedLocation.depth?.depth)!)) + " feet"
+            depthLabelTop.text = String(calculationObj.convertMetreToFeet((selectedLocation.depth?.depth)!)) + " feet"
             break
         default:
-            depthLabel.text = String(selectedLocation.depth) + " metre"
-            depthLabelTop.text = String(selectedLocation.depth/1000.0) + " m"
             break
         }
     }

@@ -15,8 +15,8 @@ class FilterViewController: UITableViewController,ArcViewDelegate {
      @IBOutlet weak var bouySwitch: UISwitch!
      @IBOutlet weak var marinaSwitch: UISwitch!
      @IBOutlet weak var depthSlider: UISlider!
-    @IBOutlet weak var depthValue: UILabel!
-      @IBOutlet weak var arcView : ArcView!
+     @IBOutlet weak var depthValue: UILabel!
+    @IBOutlet weak var arcView : ArcView!
      @IBOutlet weak var filterLabel: UILabel!
     var dirArray = ["SE","S","SW","W","NW","N","NE","E"]
     

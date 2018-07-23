@@ -1,5 +1,5 @@
 //
-//  Images+CoreDataProperties.swift
+//  WindSW+CoreDataProperties.swift
 //  
 //
 //  Created by Garima Aggarwal on 7/21/18.
@@ -10,20 +10,20 @@ import Foundation
 import CoreData
 
 
-extension Images {
+extension WindSW {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Images> {
-        return NSFetchRequest<Images>(entityName: "Images")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<WindSW> {
+        return NSFetchRequest<WindSW>(entityName: "WindSW")
     }
 
-    @NSManaged public var image: NSData?
+    @NSManaged public var windSW: Int16
     @NSManaged public var forLocation: Location?
     @NSManaged public var verifiedBy: NSSet?
 
 }
 
 // MARK: Generated accessors for verifiedBy
-extension Images {
+extension WindSW {
 
     @objc(addVerifiedByObject:)
     @NSManaged public func addToVerifiedBy(_ value: User)

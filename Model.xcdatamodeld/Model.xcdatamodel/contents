@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="City" representedClassName="City" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="city" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedCity" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="cityVersion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="Depth" representedClassName="City" syncable="YES">
+        <attribute name="depth" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="depth" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedDepth" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="depthVersion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="Description" representedClassName="City" syncable="YES">
+        <attribute name="locDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="locdescription" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedDesc" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="descVersion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="Images" representedClassName="Images" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="images" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedImage" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Island" representedClassName="City" syncable="YES">
+        <attribute name="island" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="island" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedIsland" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="islandVersion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="addBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="addedLoc" inverseEntity="User" syncable="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="forLocation" inverseEntity="City" syncable="YES"/>
+        <relationship name="depth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Depth" inverseName="forLocation" inverseEntity="Depth" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Images" inverseName="forLocation" inverseEntity="Images" syncable="YES"/>
+        <relationship name="island" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Island" inverseName="forLocation" inverseEntity="Island" syncable="YES"/>
+        <relationship name="locdescription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Description" inverseName="forLocation" inverseEntity="Description" syncable="YES"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Name" inverseName="forLocation" inverseEntity="Name" syncable="YES"/>
+        <relationship name="newRelationship7" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindSW" inverseName="forLocation" inverseEntity="WindSW" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Type" inverseName="forLocation" inverseEntity="Type" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedLocation" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="locationVersions" inverseEntity="Versioning" syncable="YES"/>
+        <relationship name="windE" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindE" inverseName="forLocation" inverseEntity="WindE" syncable="YES"/>
+        <relationship name="windN" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindN" inverseName="forLocation" inverseEntity="WindN" syncable="YES"/>
+        <relationship name="windNE" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindNE" inverseName="forLocation" inverseEntity="WindNE" syncable="YES"/>
+        <relationship name="windNW" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindNW" inverseName="forLocation" inverseEntity="WindNW" syncable="YES"/>
+        <relationship name="windS" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindS" inverseName="forLocation" inverseEntity="WindS" syncable="YES"/>
+        <relationship name="windSE" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindSE" inverseName="forLocation" inverseEntity="WindSE" syncable="YES"/>
+        <relationship name="windW" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindW" inverseName="forLocation" inverseEntity="WindW" syncable="YES"/>
+    </entity>
+    <entity name="Name" representedClassName="City" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="name" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedName" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="nameVersion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="Type" representedClassName="City" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="type" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedType" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="typeVersion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="addedLoc" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="addBy" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedCity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="City" inverseName="verifiedBy" inverseEntity="City" syncable="YES"/>
+        <relationship name="verifiedDepth" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Depth" inverseName="verifiedBy" inverseEntity="Depth" syncable="YES"/>
+        <relationship name="verifiedDesc" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Description" inverseName="verifiedBy" inverseEntity="Description" syncable="YES"/>
+        <relationship name="verifiedImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Images" inverseName="verifiedBy" inverseEntity="Images" syncable="YES"/>
+        <relationship name="verifiedIsland" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Island" inverseName="verifiedBy" inverseEntity="Island" syncable="YES"/>
+        <relationship name="verifiedLocation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="verifiedBy" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedName" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Name" inverseName="verifiedBy" inverseEntity="Name" syncable="YES"/>
+        <relationship name="verifiedType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Type" inverseName="verifiedBy" inverseEntity="Type" syncable="YES"/>
+        <relationship name="verifiedWindE" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindE" inverseName="verifiedBy" inverseEntity="WindE" syncable="YES"/>
+        <relationship name="verifiedWindN" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindN" inverseName="verifiedBy" inverseEntity="WindN" syncable="YES"/>
+        <relationship name="verifiedWindNE" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindNE" inverseName="verifiedBy" inverseEntity="WindNE" syncable="YES"/>
+        <relationship name="verifiedWindNW" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindNW" inverseName="verifiedBy" inverseEntity="WindNW" syncable="YES"/>
+        <relationship name="verifiedWindS" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindS" inverseName="verifiedBy" inverseEntity="WindS" syncable="YES"/>
+        <relationship name="verifiedWindSE" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindSE" inverseName="verifiedBy" inverseEntity="WindSE" syncable="YES"/>
+        <relationship name="verifiedWindSW" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindSW" inverseName="verifiedBy" inverseEntity="WindSW" syncable="YES"/>
+        <relationship name="verifiedWindW" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WindW" inverseName="verifiedBy" inverseEntity="WindW" syncable="YES"/>
+    </entity>
+    <entity name="Versioning" representedClassName="Versioning" syncable="YES">
+        <attribute name="noOfverifications" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="previousValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeOfChange" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="cityVersion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="versions" inverseEntity="City" syncable="YES"/>
+        <relationship name="depthVersion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Depth" inverseName="versions" inverseEntity="Depth" syncable="YES"/>
+        <relationship name="descVersion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Description" inverseName="versions" inverseEntity="Description" syncable="YES"/>
+        <relationship name="islandVersion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Island" inverseName="versions" inverseEntity="Island" syncable="YES"/>
+        <relationship name="locationVersions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="versions" inverseEntity="Location" syncable="YES"/>
+        <relationship name="nameVersion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Name" inverseName="versions" inverseEntity="Name" syncable="YES"/>
+        <relationship name="typeVersion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Type" inverseName="versions" inverseEntity="Type" syncable="YES"/>
+        <relationship name="windEversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindE" inverseName="versions" inverseEntity="WindE" syncable="YES"/>
+        <relationship name="windNEversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindNE" inverseName="versions" inverseEntity="WindNE" syncable="YES"/>
+        <relationship name="windNversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindN" inverseName="versions" inverseEntity="WindN" syncable="YES"/>
+        <relationship name="windNWversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindNW" inverseName="versions" inverseEntity="WindNW" syncable="YES"/>
+        <relationship name="windSEversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindSE" inverseName="versions" inverseEntity="WindSE" syncable="YES"/>
+        <relationship name="windSversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindS" inverseName="versions" inverseEntity="WindS" syncable="YES"/>
+        <relationship name="windSWversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindSW" inverseName="versions" inverseEntity="WindSW" syncable="YES"/>
+        <relationship name="windWversion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WindW" inverseName="versions" inverseEntity="WindW" syncable="YES"/>
+    </entity>
+    <entity name="WindE" representedClassName="City" syncable="YES">
+        <attribute name="windE" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windE" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindE" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windEversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindN" representedClassName="City" syncable="YES">
+        <attribute name="windN" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windN" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindN" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windNversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindNE" representedClassName="City" syncable="YES">
+        <attribute name="windNE" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windNE" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindNE" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windNEversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindNW" representedClassName="City" syncable="YES">
+        <attribute name="windNW" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windNW" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindNW" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windNWversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindS" representedClassName="City" syncable="YES">
+        <attribute name="windS" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windS" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindS" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windSversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindSE" representedClassName="City" syncable="YES">
+        <attribute name="windSE" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windSE" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindSE" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windSEversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindSW" representedClassName="City" syncable="YES">
+        <attribute name="windSW" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="newRelationship7" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindSW" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windSWversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <entity name="WindW" representedClassName="City" syncable="YES">
+        <attribute name="windW" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="forLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="windW" inverseEntity="Location" syncable="YES"/>
+        <relationship name="verifiedBy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="verifiedWindW" inverseEntity="User" syncable="YES"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Versioning" inverseName="windWversion" inverseEntity="Versioning" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Images" positionX="-4968" positionY="2952" width="128" height="88"/>
+        <element name="Location" positionX="-4554" positionY="2540" width="128" height="343"/>
+        <element name="Versioning" positionX="-4556" positionY="3056" width="128" height="313"/>
+        <element name="Island" positionX="-4968" positionY="2678" width="128" height="103"/>
+        <element name="Depth" positionX="-4968" positionY="2417" width="128" height="103"/>
+        <element name="City" positionX="-4968" positionY="2286" width="128" height="103"/>
+        <element name="User" positionX="-4536" positionY="2129" width="128" height="313"/>
+        <element name="Name" positionX="-4968" positionY="2169" width="128" height="103"/>
+        <element name="Description" positionX="-4968" positionY="2813" width="128" height="103"/>
+        <element name="Type" positionX="-4968" positionY="2547" width="128" height="103"/>
+        <element name="WindS" positionX="-4160" positionY="2192" width="128" height="103"/>
+        <element name="WindSW" positionX="-4221" positionY="2970" width="128" height="103"/>
+        <element name="WindN" positionX="-4295" positionY="2078" width="128" height="103"/>
+        <element name="WindSE" positionX="-4221" positionY="2829" width="128" height="103"/>
+        <element name="WindNW" positionX="-4212" positionY="2700" width="128" height="103"/>
+        <element name="WindNE" positionX="-4214" positionY="2568" width="128" height="103"/>
+        <element name="WindW" positionX="-4223" positionY="2442" width="128" height="103"/>
+        <element name="WindE" positionX="-4212" positionY="2313" width="128" height="103"/>
+    </elements>
+</model>

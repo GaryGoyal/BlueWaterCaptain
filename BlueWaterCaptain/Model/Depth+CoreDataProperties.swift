@@ -1,5 +1,5 @@
 //
-//  Images+CoreDataProperties.swift
+//  Depth+CoreDataProperties.swift
 //  
 //
 //  Created by Garima Aggarwal on 7/21/18.
@@ -10,20 +10,20 @@ import Foundation
 import CoreData
 
 
-extension Images {
+extension Depth {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Images> {
-        return NSFetchRequest<Images>(entityName: "Images")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Depth> {
+        return NSFetchRequest<Depth>(entityName: "Depth")
     }
 
-    @NSManaged public var image: NSData?
+    @NSManaged public var depth: Double
     @NSManaged public var forLocation: Location?
     @NSManaged public var verifiedBy: NSSet?
 
 }
 
 // MARK: Generated accessors for verifiedBy
-extension Images {
+extension Depth {
 
     @objc(addVerifiedByObject:)
     @NSManaged public func addToVerifiedBy(_ value: User)

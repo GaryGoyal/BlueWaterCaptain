@@ -153,11 +153,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
             (pageControlArray[prevPageIndex] as UIImageView).image = UIImage(named: "pageOff")
             (pageControlArray[currentPageIndex] as UIImageView).image = UIImage(named: "pageOn")
         }
-//         print(prevPageIndex)
-//            print(currentPageIndex)
-//         print(self.lastContentOffset)
-//        print(scrollView.contentOffset.x)
-
     }
 
     func parserDidBeginDocument(_ parser: CHCSVParser) {
@@ -166,53 +161,87 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
     
     func parserDidEndDocument(_ parser: CHCSVParser!) {
         
-        print(locationData.count)
+        let user = NSManagedObject(entity: (NSEntityDescription.entity(forEntityName: "User", in: context))!, insertInto: context) as! User
+        user.username = "Ferdinand"
+        user.userId = "1"
+        if let imageData = UIImageJPEGRepresentation(UIImage(named : "profile")!, 1) {
+            user.profilePic = imageData as NSData
+        }
+        else {
+            print("jpg error")
+        }
         
+        UserDefaults.standard.set(user.userId, forKey: "LoggedInUser")
+        UserDefaults.standard.synchronize()
+
         for i in 0..<locationData.count {
             print(i)
-//            if(i > 1120) {
-//                print(locationData[i])
-//            }
             let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
             let newLoc = NSManagedObject(entity: entity!, insertInto: context) as! Location
-            newLoc.windE = Int16(locationData[i]["0"]!)!
-            newLoc.windN = Int16(locationData[i]["1"]!)!
-            newLoc.windS = Int16(locationData[i]["4"]!)!
-            newLoc.windW = Int16(locationData[i]["7"]!)!
-            newLoc.windSW = Int16(locationData[i]["6"]!)!
-            newLoc.windNW = Int16(locationData[i]["3"]!)!
-            newLoc.windSE = Int16(locationData[i]["5"]!)!
-            newLoc.windNE = Int16(locationData[i]["2"]!)!
-            newLoc.type = locationData[i]["16"]!
-            newLoc.country = locationData[i]["12"]!
-            newLoc.city = locationData[i]["14"]!
-            newLoc.latitude = Double(locationData[i]["9"]!)!
-            newLoc.longitude = Double(locationData[i]["10"]!)!
-            newLoc.locDescription = locationData[i]["15"]!
-            newLoc.island = locationData[i]["11"]!
-            newLoc.name = locationData[i]["13"]!
-            newLoc.depth = Double(locationData[i]["8"]!)!
             
-            let entity1 = NSEntityDescription.entity(forEntityName: "Verification", in: context)
-            let newVer = NSManagedObject(entity: entity1!, insertInto: context) as! Verification
-            newVer.city = 0
-            newVer.depth = 0
-            newVer.name = 0
-            newVer.island = 0
-            newVer.locDescription = 0
-            newVer.coordinates = 0
-            newVer.type = 0
-            newVer.windSE = 0
-            newVer.windSW = 0
-            newVer.windNE = 0
-            newVer.windNW = 0
-            newVer.windN = 0
-            newVer.windE = 0
-            newVer.windW = 0
-            newVer.windS = 0
-            newVer.depth = 0
-            newVer.forLocation = newLoc
+            let newCoord = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Coordinates", in: context)!, insertInto: context) as! Coordinates
+            newCoord.latitude = Double(locationData[i]["9"]!)!
+            newCoord.longitude = Double(locationData[i]["10"]!)!
             
+            let newName = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Name", in: context)!, insertInto: context) as! Name
+            newName.name = locationData[i]["13"]!
+            
+            let newType = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Type", in: context)!, insertInto: context) as! Type
+            newType.type = locationData[i]["16"]!
+            
+            let newCity = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "City", in: context)!, insertInto: context) as! City
+            newCity.city = locationData[i]["14"]!
+    
+            let newIsland = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Island", in: context)!, insertInto: context) as! Island
+            newIsland.island = locationData[i]["11"]!
+            
+            let newDesc = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Description", in: context)!, insertInto: context) as! Description
+            newDesc.locDescription = locationData[i]["15"]!
+            
+            let newDepth = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Depth", in: context)!, insertInto: context) as! Depth
+            newDepth.depth =  Double(locationData[i]["8"]!)!
+            
+            let newWindW = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindW", in: context)!, insertInto: context) as! WindW
+            newWindW.windW = Int16(locationData[i]["7"]!)!
+            
+            let newWindE = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindE", in: context)!, insertInto: context) as! WindE
+            newWindE.windE = Int16(locationData[i]["0"]!)!
+            
+            let newWindN = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindN", in: context)!, insertInto: context) as! WindN
+            newWindN.windN = Int16(locationData[i]["1"]!)!
+            
+            let newWindS = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindS", in: context)!, insertInto: context) as! WindS
+            newWindS.windS = Int16(locationData[i]["4"]!)!
+            
+            let newWindNW = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindNW", in: context)!, insertInto: context) as! WindNW
+            newWindNW.windNW = Int16(locationData[i]["3"]!)!
+            
+            let newWindSW = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindSW", in: context)!, insertInto: context) as! WindSW
+            newWindSW.windSW = Int16(locationData[i]["6"]!)!
+            
+            let newWindNE = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindNE", in: context)!, insertInto: context) as! WindNE
+            newWindNE.windNE = Int16(locationData[i]["2"]!)!
+            
+            let newWindSE = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindSE", in: context)!, insertInto: context) as! WindSE
+            newWindSE.windSE = Int16(locationData[i]["5"]!)!
+            
+            newName.forLocation = newLoc
+            newCity.forLocation = newLoc
+            newType.forLocation = newLoc
+            newIsland.forLocation = newLoc
+            newDepth.forLocation = newLoc
+            newDesc.forLocation = newLoc
+            newWindW.forLocation = newLoc
+            newWindE.forLocation = newLoc
+            newWindN.forLocation = newLoc
+            newWindW.forLocation = newLoc
+            newWindS.forLocation = newLoc
+            newWindNE.forLocation = newLoc
+            newWindNW.forLocation = newLoc
+            newWindSE.forLocation = newLoc
+            newWindSW.forLocation = newLoc
+            newCoord.forLocation = newLoc
+      
             do {
                 try context.save()
                 //print("saved")
@@ -238,7 +267,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIScrollViewD
     
     func parser(_ parser: CHCSVParser!, didReadField field: String!, at fieldIndex: Int) {
         
-        dict["\(fieldIndex)"] =  field as String!
+        dict["\(fieldIndex)"] =  field as String?
     }
     
 }

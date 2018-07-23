@@ -13,7 +13,8 @@ class LocationImage: UIView {
     @IBOutlet weak var duplicateLabel : UILabel!
     @IBOutlet weak var verifyLabel : UILabel!
     @IBOutlet weak var photoView : UIImageView!
-    @IBOutlet weak var verifyButton : UIButton!
+    @IBOutlet weak var verifyButton : VerifyButton!
+    var locImage : Images!
     
     class func instanceFromNibWithFrame(frame : CGRect) -> UIView {
         

@@ -11,7 +11,6 @@ import CoreLocation
 import MapKit
 import CoreData
 import FBAnnotationClusteringSwift
-//import FBClusteringManager
 
 protocol HandleMapSearch {
     func dropNewLocationPin(placemark:MKPlacemark)
@@ -68,28 +67,28 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     }
     
     func dropPinsOnMap() {
-      filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains($0.type!) && $0.depth >=  UserDefaults.standard.double(forKey: "depthValue") }
+        filteredArray = locationArray.filter() { (UserDefaults.standard.object(forKey: "types") as! [String]).contains(($0.type?.type!)!) && ($0.depth?.depth)! >=  UserDefaults.standard.double(forKey: "depthValue") }
         let windFilter : Array<Int16> = UserDefaults.standard.object(forKey: "windDirFilter") as! Array<Int16>
         for i in 0..<windFilter.count {
             if(windFilter[i] == 1) {
                 switch (i) {
                     
                 case 0:
-                    filteredArray = filteredArray.filter({$0.windSE == 1})
+                    filteredArray = filteredArray.filter({$0.windSE?.windSE == 1})
                 case 1:
-                    filteredArray = filteredArray.filter({$0.windS == 1})
+                    filteredArray = filteredArray.filter({$0.windS?.windS == 1})
                 case 2:
-                    filteredArray = filteredArray.filter({$0.windSW == 1})
+                    filteredArray = filteredArray.filter({$0.windSW?.windSW == 1})
                 case 3:
-                    filteredArray = filteredArray.filter({$0.windW == 1})
+                    filteredArray = filteredArray.filter({$0.windW?.windW == 1})
                 case 4:
-                    filteredArray = filteredArray.filter({$0.windNW == 1})
+                    filteredArray = filteredArray.filter({$0.windNW?.windNW == 1})
                 case 5:
-                    filteredArray = filteredArray.filter({$0.windN == 1})
+                    filteredArray = filteredArray.filter({$0.windN?.windN == 1})
                 case 6:
-                    filteredArray = filteredArray.filter({$0.windNE == 1})
+                    filteredArray = filteredArray.filter({$0.windNE?.windNE == 1})
                 case 7:
-                    filteredArray = filteredArray.filter({$0.windE == 1})
+                    filteredArray = filteredArray.filter({$0.windE?.windE == 1})
                 default :
                     break
                     
@@ -101,31 +100,17 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         var array:[FBAnnotation] = []
         print(filteredArray.count)
         for i in 0..<filteredArray.count {
-       // for location in filteredArray {
-           /* let annotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-            if(location.name?.count == 0) {
-                annotation.title = " "
-            }
-            else {
-                annotation.title = location.name
-            }
-            
-            let clusteringManager = FBClusteringManager()
-            annotation.type = location.type
-            annotation.location = location
-            mapView.addAnnotation(annotation)*/
             let location = filteredArray[i]
             let annotation = FBAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            if(location.name?.count == 0) {
+            annotation.coordinate = CLLocationCoordinate2D(latitude: (location.coordinates?.latitude)!, longitude: (location.coordinates?.longitude)!)
+            if(location.name?.name?.count == 0) {
                 annotation.title = " "
             }
             else {
-                annotation.title = location.name
+                annotation.title = location.name?.name
             }
-            annotation.type = location.type
+            annotation.type = location.type?.type
             annotation.locIndex = i
-             //annotation.location = location
             array.append(annotation)
         }
         clusteringManager.add(annotations: array)
@@ -165,7 +150,6 @@ class SearchViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //Mark - Open Side Menu
@@ -449,7 +433,7 @@ extension SearchViewController: HandleMapSearch {
     }
     
     func dropLocationPin(location: Location){
-        let coordinates = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        let coordinates = CLLocationCoordinate2D(latitude: (location.coordinates?.latitude)!, longitude: (location.coordinates?.longitude)!)
          let region  = MKCoordinateRegionMakeWithDistance(coordinates, 1000, 1000)
        //  let region = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(0.05, 0.05))
         mapView.setRegion(region, animated: true)

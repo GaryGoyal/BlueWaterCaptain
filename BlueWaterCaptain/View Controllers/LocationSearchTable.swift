@@ -71,14 +71,14 @@ class LocationSearchTable: UITableViewController {
             return cell
         }
         else {
-            cell.locaName.text = matchingLocalItems[indexPath.row].name
-            if(matchingLocalItems[indexPath.row].type == "Marina") {
+            cell.locaName.text = matchingLocalItems[indexPath.row].name?.name
+            if(matchingLocalItems[indexPath.row].type?.type == "Marina") {
                 cell.locIcon.image = UIImage(named: "marina")
             }
-            else if (matchingLocalItems[indexPath.row].type == "Buoy") {
+            else if (matchingLocalItems[indexPath.row].type?.type == "Buoy") {
                 cell.locIcon.image = UIImage(named: "bouy")
             }
-            else if (matchingLocalItems[indexPath.row].type == "Anchorage") {
+            else if (matchingLocalItems[indexPath.row].type?.type == "Anchorage") {
                 cell.locIcon.image = UIImage(named: "anchor")
             }
             else {
@@ -140,13 +140,10 @@ extension LocationSearchTable : UISearchResultsUpdating {
         
         let localRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
         localRequest.returnsObjectsAsFaults = false
-        localRequest.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", searchBarText)
+        //localRequest.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", searchBarText)
+        localRequest.predicate = NSPredicate(format: "name.name contains[c] %@", searchBarText)
         do {
             matchingLocalItems = try context.fetch(localRequest) as! Array<Location>
-            ///print("Local Response \(matchingLocalItems.count)")
-//            for var i in 0..< matchingLocalItems.count {
-//                print(self.matchingLocalItems[i].name)
-//            }
             print(matchingLocalItems)
              self.tableView.reloadData()
             
@@ -177,7 +174,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
          //   guard let item = response.mapItems.first else {return}
             
           //  item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-            print("Previois Response \(response?.mapItems.count)")
+            //print("Previois Response \(response?.mapItems.count)")
         }
     }
     
@@ -191,7 +188,7 @@ extension LocationSearchTable:MKLocalSearchCompleterDelegate{
         //delegate?.refreshData()
       //  print(completer.results)
         matchingItems = completer.results
-        print("Apple Response \(matchingItems.count)")
+     //   print("Apple Response \(matchingItems.count)")
         self.tableView.reloadData()
     }
     

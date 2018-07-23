@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import CoreLocation
+import CoreData
 
 class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
@@ -40,6 +41,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     var depthArray = ["metric system (metre)","imperial system (feet)"]
     var depthPicker = UIPickerView()
      var isSideMenuOpened = false
+    var loggedInUser : User!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +78,16 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         self.view.addGestureRecognizer(tapRecognizer)
         
         checkForPermissions()
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.predicate = NSPredicate(format: "userId == %@", (UserDefaults.standard.value(forKey: "LoggedInUser") as! String))
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request) as! Array<User>
+            loggedInUser = result.first
+            nameLabel.text = loggedInUser.username
+             profileImg.image = UIImage(data: loggedInUser.profilePic! as Data)
+        } catch {}
 
     }
     
@@ -165,6 +179,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
             self.view.alpha = 0.5;
             self.view.isUserInteractionEnabled = false;
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateUserInfo"), object: nil)
         isSideMenuOpened = !isSideMenuOpened;
         self.revealViewController().revealToggle(sender)
     }
@@ -254,6 +269,10 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         nameLabel.text = nameField.text
         nameLabel.isHidden = false
         nameField.resignFirstResponder()
+        loggedInUser.username = nameField.text
+        do {
+            try context.save()
+        } catch {}
     }
     
     
@@ -335,6 +354,13 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         profileImg.image = image
+        if let imageData = UIImageJPEGRepresentation(image, 1) {
+            loggedInUser.profilePic = imageData as NSData
+        }
+        else {}
+        do {
+            try context.save()
+        } catch {}
          picker.dismiss(animated:true, completion: nil)
     }
     

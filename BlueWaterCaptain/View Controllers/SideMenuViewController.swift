@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 import FBAnnotationClusteringSwift
 
 class SideMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -15,16 +16,39 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var profileImage : UIImageView!
     @IBOutlet weak var username : UILabel!
     var menuItems : Array<String>!
+    var loggedInUser : User!
+     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-          menuItems = ["search","add","activities","help","settings"]
+        menuItems = ["search","add","activities","help","settings"]
         profileImage.layer.cornerRadius = 50.0
                profileImage.clipsToBounds = true
         // Do any additional setup after loading the view.
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.predicate = NSPredicate(format: "userId == %@", (UserDefaults.standard.value(forKey: "LoggedInUser") as! String))
+        request.returnsObjectsAsFaults = false
+        do {
+           let result = try context.fetch(request) as! Array<User>
+            loggedInUser = result.first
+            setUserDetails()
+        } catch {}
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(updateInfo(_:)), name: NSNotification.Name(rawValue: "updateUserInfo"), object: nil)
+        
     }
 
+    func updateInfo(_ notify : Notification) {
+        setUserDetails()
+    }
+    
+    func setUserDetails() {
+      username.text = loggedInUser.username
+        profileImage.image = UIImage(data: loggedInUser.profilePic! as Data)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

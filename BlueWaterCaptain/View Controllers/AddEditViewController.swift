@@ -11,7 +11,7 @@ import MapKit
 import CoreData
 import FBAnnotationClusteringSwift
 
-class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ArcViewDelegate {
+class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ArcViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -27,7 +27,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     @IBOutlet weak var prevNameLabel : UILabel!
     @IBOutlet weak var prevNameWidth : NSLayoutConstraint!
     @IBOutlet weak var nameField : UITextField!
-    @IBOutlet weak var nameVerifyButton : UIButton!
+    @IBOutlet weak var nameVerifyButton : VerifyButton!
     @IBOutlet weak var nameVerifyNo : UILabel!
     @IBOutlet weak var prevNameVerifyNo : UILabel!
     
@@ -37,14 +37,14 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     @IBOutlet weak var coordinateFieldView : UIView!
     @IBOutlet weak var latitudeField : UITextField!
     @IBOutlet weak var longitudeField : UITextField!
-    @IBOutlet weak var coordinateVerifyButton : UIButton!
+    @IBOutlet weak var coordinateVerifyButton : VerifyButton!
     @IBOutlet weak var coordinateVerifyNo : UILabel!
     @IBOutlet weak var prevCoordinateVerifyNo : UILabel!
 
     @IBOutlet weak var prevTypeView : UIView!
     @IBOutlet weak var prevTypeLabel : UILabel!
     @IBOutlet weak var typeField : UITextField!
-    @IBOutlet weak var typeVerifyButton : UIButton!
+    @IBOutlet weak var typeVerifyButton : VerifyButton!
     @IBOutlet weak var typeVerifyNo : UILabel!
     @IBOutlet weak var prevTypeVerifyNo : UILabel!
     @IBOutlet weak var typeImage : UIImageView!
@@ -52,7 +52,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     
     @IBOutlet weak var descField : UITextView!
     @IBOutlet weak var descFieldHeight : NSLayoutConstraint!
-    @IBOutlet weak var descVerifyButton : UIButton!
+    @IBOutlet weak var descVerifyButton : VerifyButton!
     @IBOutlet weak var descVerifyNo : UILabel!
     @IBOutlet weak var prevDescVerifyNo : UILabel!
     @IBOutlet weak var prevDescView : UIView!
@@ -61,7 +61,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     
     @IBOutlet weak var depthWidth : NSLayoutConstraint!
     @IBOutlet weak var depthField : UITextField!
-    @IBOutlet weak var depthVerifyButton : UIButton!
+    @IBOutlet weak var depthVerifyButton : VerifyButton!
     @IBOutlet weak var depthVerifyNo : UILabel!
     @IBOutlet weak var prevDepthVerifyNo : UILabel!
     @IBOutlet weak var prevDepthView : UIView!
@@ -70,7 +70,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
      @IBOutlet weak var depthView : UIView!
     
     @IBOutlet weak var islandField : UITextField!
-    @IBOutlet weak var islandVerifyButton : UIButton!
+    @IBOutlet weak var islandVerifyButton : VerifyButton!
     @IBOutlet weak var islandVerifyNo : UILabel!
     @IBOutlet weak var prevIslandVerifyNo : UILabel!
     @IBOutlet weak var prevIslandView : UIView!
@@ -78,7 +78,7 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     @IBOutlet weak var prevIslandWidth : NSLayoutConstraint!
     
     @IBOutlet weak var cityField : UITextField!
-    @IBOutlet weak var cityVerifyButton : UIButton!
+    @IBOutlet weak var cityVerifyButton : VerifyButton!
     @IBOutlet weak var cityVerifyNo : UILabel!
     @IBOutlet weak var prevCityVerifyNo : UILabel!
     @IBOutlet weak var prevCityView : UIView!
@@ -88,38 +88,39 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     @IBOutlet weak var photoView: UIView!
     @IBOutlet weak var photoViewheight :  NSLayoutConstraint!
     
-    @IBOutlet weak var windNWVerifyButton : UIButton!
+    @IBOutlet weak var windNWVerifyButton : VerifyButton!
     @IBOutlet weak var windNWVerifyLabel: UILabel!
     @IBOutlet weak var windNWVerifyView : UIView!
 
-    @IBOutlet weak var windNEVerifyButton : UIButton!
+    @IBOutlet weak var windNEVerifyButton : VerifyButton!
     @IBOutlet weak var windNEVerifyLabel: UILabel!
     @IBOutlet weak var windNEVerifyView : UIView!
     
-    @IBOutlet weak var windNVerifyButton : UIButton!
+    @IBOutlet weak var windNVerifyButton : VerifyButton!
     @IBOutlet weak var windNVerifyLabel: UILabel!
     @IBOutlet weak var windNVerifyView : UIView!
     
-    @IBOutlet weak var windWVerifyButton : UIButton!
+    @IBOutlet weak var windWVerifyButton : VerifyButton!
     @IBOutlet weak var windWVerifyLabel: UILabel!
     @IBOutlet weak var windWVerifyView : UIView!
     
-    @IBOutlet weak var windSVerifyButton : UIButton!
+    @IBOutlet weak var windSVerifyButton : VerifyButton!
     @IBOutlet weak var windSVerifyLabel: UILabel!
     @IBOutlet weak var windSVerifyView : UIView!
     
-    @IBOutlet weak var windSEVerifyButton : UIButton!
+    @IBOutlet weak var windSEVerifyButton : VerifyButton!
     @IBOutlet weak var windSEVerifyLabel: UILabel!
     @IBOutlet weak var windSEVerifyView : UIView!
     
-    @IBOutlet weak var windEVerifyButton : UIButton!
+    @IBOutlet weak var windEVerifyButton : VerifyButton!
     @IBOutlet weak var windEVerifyLabel: UILabel!
     @IBOutlet weak var windEVerifyView : UIView!
     
-    @IBOutlet weak var windSWVerifyButton : UIButton!
+    @IBOutlet weak var windSWVerifyButton : VerifyButton!
     @IBOutlet weak var windSWVerifyLabel: UILabel!
     @IBOutlet weak var windSWVerifyView : UIView!
     
+     var loggedInUser : User!
     var currentPhotoViewHeight : CGFloat = 50.0
     var isSideMenuOpened = false
     var isFromSideMenu = false
@@ -157,6 +158,14 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(SettingsViewController.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.predicate = NSPredicate(format: "userId == %@", (UserDefaults.standard.value(forKey: "LoggedInUser") as! String))
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request) as! Array<User>
+            loggedInUser = result.first
+        } catch {}
                 
         if self.isNewLocation {
             self.navigationItem.title = "Add"
@@ -178,22 +187,19 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             windSEVerifyView.isHidden = true
             windSWVerifyView.isHidden = true
             windNWVerifyView.isHidden = true
-            
         }
         else {
             self.navigationItem.title = "Edit"
+            typePicker.selectRow(typeArray.index(of: (location.type?.type)!)!, inComponent: 0, animated: false)
             var request = NSFetchRequest<NSFetchRequestResult>(entityName: "Versioning")
             request.predicate = NSPredicate(format: "forLocation == %@", location!)
             request.returnsObjectsAsFaults = false
             do {
                 changesArray = try context.fetch(request) as! Array<Versioning>
-            } catch {
-                
-                print("Failed")
-            }
-             windDirArray = [location.windSE,location.windS,location.windSW,location.windW,location.windNW,location.windN,location.windNE,location.windE]
+            } catch {}
+            windDirArray = [location.windSE?.windSE,location.windS?.windS,location.windSW?.windSW,location.windW?.windW,location.windNW?.windNW,location.windN?.windN,location.windNE?.windNE,location.windE?.windE] as! [Int16]
             
-            prevWindDirArray = [location.windSE,location.windS,location.windSW,location.windW,location.windNW,location.windN,location.windNE,location.windE]
+            prevWindDirArray = [location.windSE?.windSE,location.windS?.windS,location.windSW?.windSW,location.windW?.windW,location.windNW?.windNW,location.windN?.windN,location.windNE?.windNE,location.windE?.windE] as! [Int16]
             
             request = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
             request.predicate = NSPredicate(format: "forLocation == %@", location!)
@@ -203,15 +209,61 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
                 currentPhotoViewHeight = 50
                 for i in 0..<images.count {
                     let imgView = LocationImage.instanceFromNibWithFrame(frame: CGRect(x: 0, y : Int(currentPhotoViewHeight), width : Int(UIScreen.main.bounds.size.width), height : 215)) as! LocationImage
+                    imgView.locImage = images[i]
                     imgView.photoView.image =  UIImage(data: images[i].image! as Data)
                     imgView.duplicateLabel.text = "(0)"
-                    imgView.verifyLabel.text = String(images[i].verification)
+                    imgView.verifyLabel.text = String(images[i].verifiedBy!.count)
+                    imgView.verifyButton.addTarget(self, action: #selector(imageVerifyButtonTapped(_:)), for: .touchUpInside)
+                    if(images[i].verifiedBy?.contains(loggedInUser))! {
+                        imgView.verifyButton.isVerified = true
+                    }
                     photoView.addSubview(imgView)
                     currentPhotoViewHeight = currentPhotoViewHeight + 215
                 }
                 photoViewheight.constant = currentPhotoViewHeight //CGFloat(50 + (images.count * 215))
-            } catch {
-                print("Failed")
+            } catch {}
+            
+            if(location.windSE?.verifiedBy?.contains(loggedInUser))! {
+                windSEVerifyButton.isVerified = true
+            }
+            if(location.windS?.verifiedBy?.contains(loggedInUser))! {
+                windSVerifyButton.isVerified = true
+            }
+            if(location.windSW?.verifiedBy?.contains(loggedInUser))! {
+                windSWVerifyButton.isVerified = true
+            }
+            if(location.windW?.verifiedBy?.contains(loggedInUser))! {
+                windWVerifyButton.isVerified = true
+            }
+            if(location.windNW?.verifiedBy?.contains(loggedInUser))! {
+                windNWVerifyButton.isVerified = true
+            }
+            if(location.windN?.verifiedBy?.contains(loggedInUser))! {
+                windNVerifyButton.isVerified = true
+            }
+            if(location.windNE?.verifiedBy?.contains(loggedInUser))! {
+                windNEVerifyButton.isVerified = true
+            }
+            if(location.name?.verifiedBy?.contains(loggedInUser))! {
+                nameVerifyButton.isVerified = true
+            }
+            if(location.type?.verifiedBy?.contains(loggedInUser))! {
+                typeVerifyButton.isVerified = true
+            }
+            if(location.city?.verifiedBy?.contains(loggedInUser))! {
+                cityVerifyButton.isVerified = true
+            }
+            if(location.island?.verifiedBy?.contains(loggedInUser))! {
+                islandVerifyButton.isVerified = true
+            }
+            if(location.depth?.verifiedBy?.contains(loggedInUser))! {
+                depthVerifyButton.isVerified = true
+            }
+            if(location.coordinates?.verifiedBy?.contains(loggedInUser))! {
+                coordinateVerifyButton.isVerified = true
+            }
+            if(location.locdescription?.verifiedBy?.contains(loggedInUser))! {
+                descVerifyButton.isVerified = true
             }
         }
         arcView.delegate = self
@@ -267,9 +319,9 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
         }
         else {
             let annotation = FBAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            annotation.title = location.name
-            annotation.type = location.type
+            annotation.coordinate = CLLocationCoordinate2D(latitude: (location.coordinates?.latitude)!, longitude: (location.coordinates?.longitude)!)
+            annotation.title = location.name?.name
+            annotation.type = location.type?.type
             mapView.addAnnotation(annotation)
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude), span: span)
@@ -309,15 +361,18 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             nameField.isHidden = false
         }
         else {
-            nameVerifyNo.text = String(location.verifications!.name)
-            nameField.text = location.name
-           var filteredArray = changesArray.filter() {  $0.attributeId == "name" }
+            nameVerifyNo.text = String(location.name!.verifiedBy!.count)
+            nameField.text = location.name?.name
+            var filteredArray = changesArray.filter() {  $0.attributeId == "name" }
             if(filteredArray.count > 0) {
                 filteredArray = filteredArray.sorted(by: {
                     $0.timeOfChange?.compare($1.timeOfChange! as Date) == .orderedDescending
                 })
                 prevNameView.isHidden = false
                 prevNameLabel.text = filteredArray.first?.previousValue
+                if(prevNameLabel.text?.count == 0) {
+                    prevNameLabel.text = " "
+                }
                 prevNameVerifyNo.text = String(filteredArray.first!.verification)
                 if(prevNameLabel.intrinsicContentSize.width > maxWidth) {
                     prevNameWidth.constant = maxWidth
@@ -339,9 +394,9 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
              prevCoordinateLabel.text = ""
         }
         else {
-            coordinateVerifyNo.text = String(location.verifications!.coordinates)
-            latitudeField.text = String(location.latitude)
-            longitudeField.text = String(location.longitude)
+            coordinateVerifyNo.text = String(location.coordinates!.verifiedBy!.count)
+            latitudeField.text = String(location.coordinates!.latitude)
+            longitudeField.text = String(location.coordinates!.longitude)
             var filteredLatArray = changesArray.filter() {  $0.attributeId == "latitude" }
             var filteredLongArray = changesArray.filter() {  $0.attributeId == "longitude" }
             if(filteredLatArray.count > 0) {
@@ -383,8 +438,8 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
              prevTypeLabel.text = ""
         }
         else {
-            typeVerifyNo.text = String(location.verifications!.type)
-            typeField.text = location.type
+            typeVerifyNo.text = String(location.type!.verifiedBy!.count)
+            typeField.text = location.type?.type
             var filteredArray = changesArray.filter() {  $0.attributeId == "type" }
             if(filteredArray.count > 0) {
                 filteredArray = filteredArray.sorted(by: {
@@ -404,13 +459,13 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
                 prevTypeView.isHidden = true
                 prevTypeLabel.text = ""
             }
-            if(location.type == "Marina") {
+            if(location.type?.type == "Marina") {
                 typeImage.image = UIImage(named: "marina")
             }
-            else if (location.type == "Buoy") {
+            else if (location.type?.type == "Buoy") {
                 typeImage.image = UIImage(named: "bouy")
             }
-            else if (location.type == "Anchorage") {
+            else if (location.type?.type == "Anchorage") {
                 typeImage.image = UIImage(named: "anchor")
             }
         }
@@ -422,8 +477,8 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             prevDepthLabel.text = ""
         }
         else {
-            depthVerifyNo.text = String(location.verifications!.depth)
-            depthField.text = String(location.depth)
+            depthVerifyNo.text = String(location.depth!.verifiedBy!.count)
+            depthField.text = String(location.depth!.depth)
             var filteredArray = changesArray.filter() {  $0.attributeId == "depth" }
             if(filteredArray.count > 0) {
                 filteredArray = filteredArray.sorted(by: {
@@ -452,9 +507,9 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             descField.isHidden = false
         }
         else {
-            descVerifyNo.text = String(location.verifications!.locDescription)
-            descField.text = location.locDescription
-            if((location.locDescription?.count)! > 0) {
+            descVerifyNo.text = String(location.locdescription!.verifiedBy!.count)
+            descField.text = location.locdescription?.locDescription
+            if((location.locdescription?.locDescription?.count)! > 0) {
                 descFieldHeight.constant = descField.contentSize.height
             }
             else {
@@ -492,8 +547,8 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
              prevCityLabel.text = ""
         }
         else {
-            cityVerifyNo.text = String(location.verifications!.city)
-             cityField.text = location.city
+            cityVerifyNo.text = String(location.city!.verifiedBy!.count)
+             cityField.text = location.city?.city
             var filteredArray = changesArray.filter() {  $0.attributeId == "city" }
             if(filteredArray.count > 0) {
                 filteredArray = filteredArray.sorted(by: {
@@ -526,8 +581,8 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
              prevIslandLabel.text = ""
         }
         else {
-            islandVerifyNo.text = String(location.verifications!.island)
-             islandField.text = location.island
+            islandVerifyNo.text = String(location.island!.verifiedBy!.count)
+             islandField.text = location.island?.island
             var filteredArray = changesArray.filter() {  $0.attributeId == "island" }
             if(filteredArray.count > 0) {
                 //  print(filteredArray)
@@ -579,154 +634,136 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     //MARK: Button actions
     
        @objc func cancelButtonTapped() {
-        
-      /* let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-        let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
-       newChange.attributeId = "type"
-        newChange.previousValue = location.type
-        newChange.timeOfChange = Date() as NSDate
-        newChange.verification = 0
-        newChange.forLocation = location
-        location.type = "Anchorage"
-        
-        let newChange1 = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
-        newChange.attributeId = "depth"
-        newChange1.previousValue = String(location.depth)
-        newChange1.timeOfChange = Date() as NSDate
-        newChange1.verification = 0
-        newChange1.forLocation = location
-        location.depth = 56
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        }*/
-        
-     /*    let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-         let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
-         newChange.attributeId = "longitude"
-         newChange.previousValue = String(location.longitude)
-         newChange.timeOfChange = Date() as NSDate
-         newChange.verification = 0
-         newChange.forLocation = location
-         location.longitude = 12.573
-        
-          let entity1 = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-         let newChange1 = NSManagedObject(entity: entity1!, insertInto: context) as! Versioning
-         newChange1.attributeId = "latitude"
-         newChange1.previousValue = String(location.latitude)
-         newChange1.timeOfChange = Date() as NSDate
-         newChange1.verification = 0
-         newChange1.forLocation = location
-         do {
-         try context.save()
-         } catch {
-         print("Failed saving")
-         }
-        self.dismiss(animated: true, completion: nil)*/
-        
-      /*  let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-        let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
-        newChange.attributeId = "city"
-        newChange.previousValue = location.city
-        newChange.timeOfChange = Date() as NSDate
-        newChange.verification = 0
-        newChange.forLocation = location
-        location.city = "Singapore"
-        
-        let entity1 = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-        let newChange1 = NSManagedObject(entity: entity1!, insertInto: context) as! Versioning
-        newChange1.attributeId = "island"
-        newChange1.previousValue = location.island
-        newChange1.timeOfChange = Date() as NSDate
-        newChange1.verification = 0
-        newChange1.forLocation = location
-        location.island = "THIS IS sunderbans island. It is very beutoful"
-        do {
-            try context.save()
-        } catch {
-            print("Failed saving")
-        }*/
         self.dismiss(animated: true, completion: nil)
         
     }
     
-    @IBAction func verifyButtonTapped(_ sender : VerifyButton) {
-        sender.isVerified =  !sender.isVerified
-        
+    
+    @objc func imageVerifyButtonTapped(_ sender : VerifyButton) {
+        let imgView = sender.superview as! LocationImage
+         sender.isVerified =  !sender.isVerified
         if(sender.isVerified) {
-            switch sender.tag {
-            case 1:
-                coordinateVerifyNo.text = String(Int(coordinateVerifyNo.text!)! + 1)
-            case 2:
-                typeVerifyNo.text = String(Int(typeVerifyNo.text!)! + 1)
-            case 3:
-                nameVerifyNo.text = String(Int(nameVerifyNo.text!)! + 1)
-            case 4:
-                islandVerifyNo.text = String(Int(islandVerifyNo.text!)! + 1)
-            case 5:
-                cityVerifyNo.text = String(Int(cityVerifyNo.text!)! + 1)
-            case 6:
-                depthVerifyNo.text = String(Int(depthVerifyNo.text!)! + 1)
-            case 7:
-                descVerifyNo.text = String(Int(descVerifyNo.text!)! + 1)
-            case 10:
-                windSEVerifyLabel.text = String(Int(windSEVerifyLabel.text!)! + 1)
-            case 11:
-               windSVerifyLabel.text = String(Int(windSVerifyLabel.text!)! + 1)
-            case 12:
-               windSWVerifyLabel.text = String(Int(windSWVerifyLabel.text!)! + 1)
-            case 13:
-                windWVerifyLabel.text = String(Int(windWVerifyLabel.text!)! + 1)
-            case 14:
-               windNWVerifyLabel.text = String(Int(windNWVerifyLabel.text!)! + 1)
-            case 15:
-                windNVerifyLabel.text = String(Int(windNVerifyLabel.text!)! + 1)
-            case 16:
-                windNEVerifyLabel.text = String(Int(windNEVerifyLabel.text!)! + 1)
-            case 17:
-                windEVerifyLabel.text = String(Int(windEVerifyLabel.text!)! + 1)
-            default:
-                break
-            }
+             imgView.verifyLabel.text = String(Int(imgView.verifyLabel.text!)! + 1)
+            imgView.locImage.addToVerifiedBy(loggedInUser)
         }
         else {
-            switch sender.tag {
-            case 1:
-                coordinateVerifyNo.text = String(Int(coordinateVerifyNo.text!)! - 1)
-            case 2:
-                typeVerifyNo.text = String(Int(typeVerifyNo.text!)! - 1)
-            case 3:
-                nameVerifyNo.text = String(Int(nameVerifyNo.text!)! - 1)
-            case 4:
-                islandVerifyNo.text = String(Int(islandVerifyNo.text!)! - 1)
-            case 5:
-                cityVerifyNo.text = String(Int(cityVerifyNo.text!)! - 1)
-            case 6:
-                depthVerifyNo.text = String(Int(depthVerifyNo.text!)! - 1)
-            case 7:
-                descVerifyNo.text = String(Int(descVerifyNo.text!)! - 1)
-            case 10:
-                windSEVerifyLabel.text = String(Int(windSEVerifyLabel.text!)! - 1)
-            case 11:
-                windSVerifyLabel.text = String(Int(windSVerifyLabel.text!)! - 1)
-            case 12:
-                windSWVerifyLabel.text = String(Int(windSWVerifyLabel.text!)! - 1)
-            case 13:
-                windWVerifyLabel.text = String(Int(windWVerifyLabel.text!)! - 1)
-            case 14:
-                windNWVerifyLabel.text = String(Int(windNWVerifyLabel.text!)! - 1)
-            case 15:
-                windNVerifyLabel.text = String(Int(windNVerifyLabel.text!)! - 1)
-            case 16:
-                windNEVerifyLabel.text = String(Int(windNEVerifyLabel.text!)! - 1)
-            case 17:
-                windEVerifyLabel.text = String(Int(windEVerifyLabel.text!)! - 1)
-            default:
-                break
-            }
+            imgView.verifyLabel.text = String(Int(imgView.verifyLabel.text!)! - 1)
+            imgView.locImage.removeFromVerifiedBy(loggedInUser)
         }
         
+    }
+    
+    @IBAction func verifyButtonTapped(_ sender : VerifyButton) {
+        
+        if(!isNewLocation) {
+            sender.isVerified =  !sender.isVerified
+            
+            if(sender.isVerified) {
+                switch sender.tag {
+                case 1:
+                    coordinateVerifyNo.text = String(Int(coordinateVerifyNo.text!)! + 1)
+                    location.coordinates?.addToVerifiedBy(loggedInUser)
+                case 2:
+                    typeVerifyNo.text = String(Int(typeVerifyNo.text!)! + 1)
+                    location.type?.addToVerifiedBy(loggedInUser)
+                case 3:
+                    nameVerifyNo.text = String(Int(nameVerifyNo.text!)! + 1)
+                    location.name?.addToVerifiedBy(loggedInUser)
+                case 4:
+                    islandVerifyNo.text = String(Int(islandVerifyNo.text!)! + 1)
+                    location.island?.addToVerifiedBy(loggedInUser)
+                case 5:
+                    cityVerifyNo.text = String(Int(cityVerifyNo.text!)! + 1)
+                    location.city?.addToVerifiedBy(loggedInUser)
+                case 6:
+                    depthVerifyNo.text = String(Int(depthVerifyNo.text!)! + 1)
+                    location.depth?.addToVerifiedBy(loggedInUser)
+                case 7:
+                    descVerifyNo.text = String(Int(descVerifyNo.text!)! + 1)
+                    location.locdescription?.addToVerifiedBy(loggedInUser)
+                case 10:
+                    windSEVerifyLabel.text = String(Int(windSEVerifyLabel.text!)! + 1)
+                    location.windSE?.addToVerifiedBy(loggedInUser)
+                case 11:
+                    windSVerifyLabel.text = String(Int(windSVerifyLabel.text!)! + 1)
+                    location.windS?.addToVerifiedBy(loggedInUser)
+                case 12:
+                    windSWVerifyLabel.text = String(Int(windSWVerifyLabel.text!)! + 1)
+                    location.windSW?.addToVerifiedBy(loggedInUser)
+                case 13:
+                    windWVerifyLabel.text = String(Int(windWVerifyLabel.text!)! + 1)
+                    location.windW?.addToVerifiedBy(loggedInUser)
+                case 14:
+                    windNWVerifyLabel.text = String(Int(windNWVerifyLabel.text!)! + 1)
+                    location.windNW?.addToVerifiedBy(loggedInUser)
+                case 15:
+                    windNVerifyLabel.text = String(Int(windNVerifyLabel.text!)! + 1)
+                    location.windN?.addToVerifiedBy(loggedInUser)
+                case 16:
+                    windNEVerifyLabel.text = String(Int(windNEVerifyLabel.text!)! + 1)
+                    location.windNE?.addToVerifiedBy(loggedInUser)
+                case 17:
+                    windEVerifyLabel.text = String(Int(windEVerifyLabel.text!)! + 1)
+                    location.windE?.addToVerifiedBy(loggedInUser)
+                default:
+                    break
+                }
+            }
+            else {
+                switch sender.tag {
+                case 1:
+                    coordinateVerifyNo.text = String(Int(coordinateVerifyNo.text!)! - 1)
+                    location.coordinates?.removeFromVerifiedBy(loggedInUser)
+                    
+                case 2:
+                    typeVerifyNo.text = String(Int(typeVerifyNo.text!)! - 1)
+                    location.type?.removeFromVerifiedBy(loggedInUser)
+                case 3:
+                    nameVerifyNo.text = String(Int(nameVerifyNo.text!)! - 1)
+                    location.name?.removeFromVerifiedBy(loggedInUser)
+                case 4:
+                    islandVerifyNo.text = String(Int(islandVerifyNo.text!)! - 1)
+                    location.island?.removeFromVerifiedBy(loggedInUser)
+                case 5:
+                    cityVerifyNo.text = String(Int(cityVerifyNo.text!)! - 1)
+                    location.city?.removeFromVerifiedBy(loggedInUser)
+                case 6:
+                    depthVerifyNo.text = String(Int(depthVerifyNo.text!)! - 1)
+                    location.depth?.removeFromVerifiedBy(loggedInUser)
+                case 7:
+                    descVerifyNo.text = String(Int(descVerifyNo.text!)! - 1)
+                    location.locdescription?.removeFromVerifiedBy(loggedInUser)
+                case 10:
+                    windSEVerifyLabel.text = String(Int(windSEVerifyLabel.text!)! - 1)
+                    location.windSE?.removeFromVerifiedBy(loggedInUser)
+                case 11:
+                    windSVerifyLabel.text = String(Int(windSVerifyLabel.text!)! - 1)
+                    location.windS?.removeFromVerifiedBy(loggedInUser)
+                case 12:
+                    windSWVerifyLabel.text = String(Int(windSWVerifyLabel.text!)! - 1)
+                    location.windSW?.removeFromVerifiedBy(loggedInUser)
+                case 13:
+                    windWVerifyLabel.text = String(Int(windWVerifyLabel.text!)! - 1)
+                    location.windW?.removeFromVerifiedBy(loggedInUser)
+                case 14:
+                    windNWVerifyLabel.text = String(Int(windNWVerifyLabel.text!)! - 1)
+                    location.windNW?.removeFromVerifiedBy(loggedInUser)
+                case 15:
+                    windNVerifyLabel.text = String(Int(windNVerifyLabel.text!)! - 1)
+                    location.windN?.removeFromVerifiedBy(loggedInUser)
+                case 16:
+                    windNEVerifyLabel.text = String(Int(windNEVerifyLabel.text!)! - 1)
+                    location.windNE?.removeFromVerifiedBy(loggedInUser)
+                case 17:
+                    windEVerifyLabel.text = String(Int(windEVerifyLabel.text!)! - 1)
+                    location.windE?.removeFromVerifiedBy(loggedInUser)
+                default:
+                    break
+                }
+            }
+            
+        }
+       
        
 
     }
@@ -739,243 +776,206 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             return
         }
         
-        
         if(isNewLocation) {
             
             // Creatr Location Object
             let entity = NSEntityDescription.entity(forEntityName: "Location", in: context)
             let newLoc = NSManagedObject(entity: entity!, insertInto: context) as! Location
-
-            newLoc.windSE = windDirArray[0]
-            newLoc.windS = windDirArray[1]
-            newLoc.windSW = windDirArray[2]
-            newLoc.windW = windDirArray[3]
-            newLoc.windNW = windDirArray[4]
-            newLoc.windN = windDirArray[5]
-            newLoc.windNE = windDirArray[6]
-            newLoc.windE = windDirArray[7]
             
-            newLoc.name = nameField.text
-            newLoc.island = islandField.text
-            newLoc.city = cityField.text
-            newLoc.latitude = Double(latitudeField.text!)!
-            newLoc.longitude = Double(longitudeField.text!)!
+            
+            let newCoord = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Coordinates", in: context)!, insertInto: context) as! Coordinates
+            newCoord.latitude = Double(latitudeField.text!)!
+            newCoord.longitude = Double(longitudeField.text!)!
+            
+            let newName = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Name", in: context)!, insertInto: context) as! Name
+            newName.name = nameField.text
+            
+            let newType = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Type", in: context)!, insertInto: context) as! Type
+            newType.type = typeField.text
+            
+            let newCity = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "City", in: context)!, insertInto: context) as! City
+            newCity.city = cityField.text
+            
+            let newIsland = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Island", in: context)!, insertInto: context) as! Island
+            newIsland.island = islandField.text
+            
+            let newDesc = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Description", in: context)!, insertInto: context) as! Description
+            newDesc.locDescription = descField.text
+            
+            let newDepth = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "Depth", in: context)!, insertInto: context) as! Depth
             if((depthField.text?.count)! > 0) {
-                newLoc.depth = Double(depthField.text!)!
+                newDepth.depth = Double(depthField.text!)!
             }
             else {
-                newLoc.depth = 0.0
+                newDepth.depth = 0.0
             }
-            newLoc.locDescription = descField.text
-            newLoc.type = typeField.text
+            
+            let newWindW = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindW", in: context)!, insertInto: context) as! WindW
+            newWindW.windW = windDirArray[3]
+            
+            let newWindE = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindE", in: context)!, insertInto: context) as! WindE
+            newWindE.windE = windDirArray[7]
+            
+            let newWindN = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindN", in: context)!, insertInto: context) as! WindN
+            newWindN.windN = windDirArray[5]
+            
+            let newWindS = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindS", in: context)!, insertInto: context) as! WindS
+            newWindS.windS = windDirArray[1]
+            
+            let newWindNW = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindNW", in: context)!, insertInto: context) as! WindNW
+            newWindNW.windNW = windDirArray[4]
+            
+            let newWindSW = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindSW", in: context)!, insertInto: context) as! WindSW
+            newWindSW.windSW = windDirArray[2]
+            
+            let newWindNE = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindNE", in: context)!, insertInto: context) as! WindNE
+            newWindNE.windNE = windDirArray[6]
+            
+            let newWindSE = NSManagedObject(entity: NSEntityDescription.entity(forEntityName: "WindSE", in: context)!, insertInto: context) as! WindSE
+            newWindSE.windSE = windDirArray[0]
+            
+            newName.forLocation = newLoc
+            newCity.forLocation = newLoc
+            newType.forLocation = newLoc
+            newIsland.forLocation = newLoc
+            newDepth.forLocation = newLoc
+            newDesc.forLocation = newLoc
+            newWindW.forLocation = newLoc
+            newWindE.forLocation = newLoc
+            newWindN.forLocation = newLoc
+            newWindW.forLocation = newLoc
+            newWindS.forLocation = newLoc
+            newWindNE.forLocation = newLoc
+            newWindNW.forLocation = newLoc
+            newWindSE.forLocation = newLoc
+            newWindSW.forLocation = newLoc
+            newCoord.forLocation = newLoc
             
             for i in 0..<imageArray.count {
                 // Create Images Objects
                 let entity = NSEntityDescription.entity(forEntityName: "Images", in: context)
                 let newImg = NSManagedObject(entity: entity!, insertInto: context) as! Images
-                newImg.verification = 0
                 newImg.image = UIImageJPEGRepresentation((imageArray[i] as NewLocationImage).locImage, 0.5)! as NSData
                 newImg.forLocation = newLoc
             }
-            
-            // Create Verification Object
-            let entity1 = NSEntityDescription.entity(forEntityName: "Verification", in: context)
-            let newVer = NSManagedObject(entity: entity1!, insertInto: context) as! Verification
-            newVer.city = 0
-            newVer.depth = 0
-            newVer.name = 0
-            newVer.island = 0
-            newVer.locDescription = 0
-            newVer.coordinates = 0
-            newVer.type = 0
-            newVer.windSE = 0
-            newVer.windSW = 0
-            newVer.windNE = 0
-            newVer.windNW = 0
-            newVer.windN = 0
-            newVer.windE = 0
-            newVer.windW = 0
-            newVer.windS = 0
-            newVer.forLocation = newLoc
-            
         }
         else {
-            
-           /* location.windSE = windDirArray[0]
-            location.windS = windDirArray[1]
-            location.windSW = windDirArray[2]
-            location.windW = windDirArray[3]
-            location.windNW = windDirArray[4]
-            location.windN = windDirArray[5]
-            location.windNE = windDirArray[6]
-            location.windE = windDirArray[7]*/
-            
-           /* location.name = nameField.text
-            location.island = islandField.text
-            location.city = cityField.text
-            location.latitude = Double(latitudeField.text!)!
-            location.longitude = Double(longitudeField.text!)!
-            if((depthField.text?.count)! > 0) {
-                location.depth = Double(depthField.text!)!
-            }
-            else {
-                location.depth = 0.0
-            }
-            location.locDescription = descField.text
-            location.type = typeField.text*/
             
             for i in 0..<imageArray.count {
                 // Create Images Objects
                 let entity = NSEntityDescription.entity(forEntityName: "Images", in: context)
                 let newImg = NSManagedObject(entity: entity!, insertInto: context) as! Images
-                newImg.verification = 0
                 newImg.image = UIImageJPEGRepresentation((imageArray[i] as NewLocationImage).locImage, 0.5)! as NSData
                 newImg.forLocation = location
             }
             
-            let locVerifications = location.verifications
-            locVerifications?.name = Int16(nameVerifyNo.text!)!
-            locVerifications?.city = Int16(cityVerifyNo.text!)!
-            locVerifications?.depth = Int16(depthVerifyNo.text!)!
-            locVerifications?.island = Int16(islandVerifyNo.text!)!
-            locVerifications?.locDescription = Int16(descVerifyNo.text!)!
-            locVerifications?.coordinates = Int16(coordinateVerifyNo.text!)!
-            locVerifications?.type = Int16(typeVerifyNo.text!)!
-            locVerifications?.windSE = Int16(windSEVerifyLabel.text!)!
-            locVerifications?.windSW = Int16(windSWVerifyLabel.text!)!
-            locVerifications?.windNE = Int16(windNEVerifyLabel.text!)!
-            locVerifications?.windNW = Int16(windNWVerifyLabel.text!)!
-            locVerifications?.windN = Int16(windNVerifyLabel.text!)!
-            locVerifications?.windE = Int16(windEVerifyLabel.text!)!
-            locVerifications?.windW = Int16(windWVerifyLabel.text!)!
-            locVerifications?.windS = Int16(windSVerifyLabel.text!)!
             
-            if(nameField.text != location.name) {
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(nameField.text != location.name?.name) {
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "name"
-                newChange.previousValue = location.name
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.name)!
-                newChange.forLocation = location
-                location.name = nameField.text
-                location.verifications?.name = 0
+                newChange.previousValue = location.name?.name
+                newChange.verification = Int16(nameVerifyNo.text!)!
+                location.name?.name = nameField.text
+                location.name?.removeFromVerifiedBy((location.name?.verifiedBy)!)
             }
             
-            if(islandField.text != location.island) {
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(islandField.text != location.island?.island) {
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "island"
-                newChange.previousValue = location.island
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.island)!
-                newChange.forLocation = location
-                location.island = islandField.text
-                location.verifications?.island = 0
+                newChange.previousValue = location.island?.island
+                newChange.verification = Int16(islandVerifyNo.text!)!
+                location.island?.island = islandField.text
+                location.island?.removeFromVerifiedBy((location.island?.verifiedBy)!)
             }
             
-            if(cityField.text != location.city) {
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(cityField.text != location.city?.city) {
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "city"
-                newChange.previousValue = location.city
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.city)!
-                newChange.forLocation = location
-                location.city = cityField.text
-                 location.verifications?.city = 0
+                newChange.previousValue = location.city?.city
+                newChange.verification = Int16(cityVerifyNo.text!)!
+                location.city?.city = cityField.text
+                location.city?.removeFromVerifiedBy((location.city?.verifiedBy)!)
             }
             
-            if(typeField.text != location.type) {
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(typeField.text != location.type?.type) {
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "type"
-                newChange.previousValue = location.type
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.type)!
-                newChange.forLocation = location
-                location.type = typeField.text
-                 location.verifications?.type = 0
+                newChange.previousValue = location.type?.type
+                newChange.verification = Int16(typeVerifyNo.text!)!
+                location.type?.type = typeField.text
+                location.type?.removeFromVerifiedBy((location.type?.verifiedBy)!)
             }
             
             if((depthField.text?.count)! == 0) {
                depthField.text = "0.0"
             }
             
-            if(Double(depthField.text!) != location.depth) {
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(Double(depthField.text!) != location.depth?.depth) {
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "depth"
-                newChange.previousValue = String(location.depth)
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.depth)!
-                newChange.forLocation = location
+                newChange.previousValue = String(location.depth!.depth)
+                newChange.verification = Int16(depthVerifyNo.text!)!
                 if((depthField.text?.count)! > 0) {
-                    location.depth = Double(depthField.text!)!
+                    location.depth?.depth = Double(depthField.text!)!
                 }
                 else {
-                    location.depth = 0.0
+                    location.depth?.depth = 0.0
                 }
-                 location.verifications?.depth = 0
+                location.depth?.removeFromVerifiedBy((location.depth?.verifiedBy)!)
             }
             
-            if(descField.text != location.locDescription) {
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(descField.text != location.locdescription?.locDescription) {
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "description"
-                newChange.previousValue = location.locDescription
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.locDescription)!
-                newChange.forLocation = location
-                location.locDescription = descField.text
-                 location.verifications?.locDescription = 0
+                newChange.previousValue = location.locdescription?.locDescription
+                newChange.verification = Int16(descVerifyNo.text!)!
+                location.locdescription?.locDescription = descField.text
+                location.locdescription?.removeFromVerifiedBy((location.locdescription?.verifiedBy)!)
             }
             
-            if(latitudeField.text != String(location.latitude) || longitudeField.text != String(location.longitude)) {
-            
-                let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+            if(latitudeField.text != String(location.coordinates!.latitude) || longitudeField.text != String(location.coordinates!.longitude)) {
+
+                let newChange = createNewVersioningRecord()
                 newChange.attributeId = "latitude"
-                newChange.previousValue = String(location.latitude)
-                newChange.timeOfChange = Date() as NSDate
-                newChange.verification = (location.verifications?.coordinates)!
-                newChange.forLocation = location
-                location.latitude = Double(latitudeField.text!)!
+                newChange.previousValue = String(location.coordinates!.latitude)
+                newChange.verification = Int16(coordinateVerifyNo.text!)!
+                location.coordinates?.latitude = Double(latitudeField.text!)!
                 
-                let entity2 = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
-                let newChange2 = NSManagedObject(entity: entity2!, insertInto: context) as! Versioning
+                let newChange2 = createNewVersioningRecord()
                 newChange2.attributeId = "longitude"
-                newChange2.previousValue = String(location.longitude)
-                newChange2.timeOfChange = Date() as NSDate
-                newChange2.verification = (location.verifications?.coordinates)!
-                newChange2.forLocation = location
-                location.longitude = Double(longitudeField.text!)!
+                newChange2.previousValue = String(location.coordinates!.longitude)
+                newChange2.verification = Int16(coordinateVerifyNo.text!)!
+                location.coordinates?.longitude = Double(longitudeField.text!)!
                 
-                 location.verifications?.coordinates = 0
+                location.coordinates?.removeFromVerifiedBy((location.coordinates?.verifiedBy)!)
             }
-            
-            print(windDirArray)
             
             for i in 0..<windDirArray.count {
                 if(prevWindDirArray[i] != windDirArray[i]) {
                     switch (i)
                     {
                         case 0:
-                            location.windSE = windDirArray[i]
+                            let newChange = createNewVersioningRecord()
+                            newChange.attributeId = "windSE"
+                            newChange.previousValue = String(location.windSE!.windSE)
+                            newChange.verification = Int16(windSEVerifyLabel.text!)!
+                            location.windSE?.removeFromVerifiedBy((location.windSE?.verifiedBy)!)
+                            location.windSE?.windSE = windDirArray[i]
+                        
                         case 1:
-                            location.windS = windDirArray[i]
+                            location.windS?.windS = windDirArray[i]
                         case 2:
-                            location.windSW = windDirArray[i]
+                            location.windSW?.windSW = windDirArray[i]
                         case 3:
-                            location.windW = windDirArray[i]
+                            location.windW?.windW = windDirArray[i]
                         case 4:
-                            location.windNW = windDirArray[i]
+                            location.windNW?.windNW = windDirArray[i]
                         case 5:
-                            location.windN = windDirArray[i]
+                            location.windN?.windN = windDirArray[i]
                         case 6:
-                            location.windNE = windDirArray[i]
+                            location.windNE?.windNE = windDirArray[i]
                         case 7:
-                            location.windE = windDirArray[i]
+                            location.windE?.windE = windDirArray[i]
                         
                     default:
                         break
@@ -1001,8 +1001,14 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
             self.present(alertMessage, animated: true, completion: nil)
             
         }
-        
-        
+    }
+    
+    func createNewVersioningRecord() -> Versioning {
+        let entity = NSEntityDescription.entity(forEntityName: "Versioning", in: context)
+        let newChange = NSManagedObject(entity: entity!, insertInto: context) as! Versioning
+        newChange.timeOfChange = Date() as NSDate
+        newChange.forLocation = location
+        return newChange
     }
     
     
@@ -1086,26 +1092,84 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-     /*   if(!isNewLocation) {
+        if(!isNewLocation) {
             if(textField == latitudeField || textField == longitudeField) {
-              //  coordinateView.isHidden = false
-                coordinateFieldView.isHidden = true
+                
+                if((Double(latitudeField.text!) != location.coordinates?.latitude)  || (Double(longitudeField.text!) != location.coordinates?.longitude)) {
+                    coordinateVerifyNo.isHidden = true
+                    coordinateVerifyButton.isHidden = true
+                }
+                else {
+                    coordinateVerifyNo.isHidden = false
+                    coordinateVerifyButton.isHidden = false
+                }
             }
-            
-            if(textField == islandField) {
-                islandView.isHidden = false
-                islandField.isHidden = true
-                islandLabel.text = islandField.text
+            else if (textField == nameField) {
+                if(nameField.text! != location.name?.name) {
+                    nameVerifyNo.isHidden = true
+                    nameVerifyButton.isHidden = true
+                }
+                else {
+                    nameVerifyNo.isHidden = false
+                    nameVerifyButton.isHidden = false
+                }
             }
-            
-            if(textField == nameField) {
-                nameField.isHidden = true
-                nameView.isHidden = false
-                nameLabel.text = nameField.text
+            else if (textField == typeField) {
+                if(typeField.text! != location.type?.type) {
+                    typeVerifyNo.isHidden = true
+                    typeVerifyButton.isHidden = true
+                }
+                else {
+                    typeVerifyNo.isHidden = false
+                    typeVerifyButton.isHidden = false
+                }
             }
-        }*/
+            else if (textField == islandField) {
+                if(islandField.text! != location.island?.island) {
+                    islandVerifyNo.isHidden = true
+                    islandVerifyButton.isHidden = true
+                }
+                else {
+                    islandVerifyNo.isHidden = false
+                    islandVerifyButton.isHidden = false
+                }
+            }
+            else if (textField == cityField) {
+                if(cityField.text! != location.city?.city) {
+                    cityVerifyNo.isHidden = true
+                    cityVerifyButton.isHidden = true
+                }
+                else {
+                    cityVerifyNo.isHidden = false
+                    cityVerifyButton.isHidden = false
+                }
+            }
+            else if (textField == depthField) {
+                if(Double(depthField.text!) != location.depth?.depth) {
+                    depthVerifyNo.isHidden = true
+                    depthVerifyButton.isHidden = true
+                }
+                else {
+                    depthVerifyNo.isHidden = false
+                    depthVerifyButton.isHidden = false
+                }
+            }
+        }
         
        
+    }
+    
+    func textViewDidEndEditing(_ textview: UITextView) {
+        if (textview == descField) {
+            if(descField.text! != location.locdescription?.locDescription) {
+                descVerifyNo.isHidden = true
+                descVerifyButton.isHidden = true
+            }
+            else {
+                descVerifyNo.isHidden = false
+                descVerifyButton.isHidden = false
+            }
+        }
     }
     
     
@@ -1151,19 +1215,6 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-      /*  let img : NewLocationImage = NewLocationImage.instanceFromNibWithFrame(frame: CGRect(x: 0, y:50 + CGFloat(imageArray.count * 180), width:self.view.frame.size.width, height: 180)) as! NewLocationImage
-        img.photo.image = image
-        img.layer.borderColor = UIColor.red.cgColor
-        img.layer.borderWidth = 2.0
-        img.backgroundColor = UIColor.yellow
-        img.clipsToBounds = true
-        print(img)
-        imageArray.append(img)
-        img.deleteButton.addTarget(self, action: #selector(deleteImage(_ :)), for: .touchUpInside)
-        photoView.addSubview(img)
-        photoViewheight.constant = photoViewheight.constant + 500
-        self.tableView.reloadData()
-        picker.dismiss(animated:true, completion: nil)*/
         
         let img : NewLocationImage = NewLocationImage(frame: CGRect(x: 0, y:currentPhotoViewHeight + CGFloat(imageArray.count * 180), width:self.view.frame.size.width, height: 180))
         img.backgroundColor = UIColor.white
@@ -1203,8 +1254,8 @@ class AddEditViewController: UITableViewController, MKMapViewDelegate, UITextFie
         let index = imageArray.index(of: imgTodelete)
         imageArray.remove(at: index!)
         
-        var y : CGFloat = 50.0
-        for var i in index!..<imageArray.count {
+     //   var y : CGFloat = 50.0
+        for i in index!..<imageArray.count {
 //            let imgView = imageArray[i] as NewLocationImage
 //            imgView.frame = CGRect(x: 0, y:y, width:self.view.frame.size.width, height: 180)
 //            y = y + 180

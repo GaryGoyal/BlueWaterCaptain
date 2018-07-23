@@ -2,7 +2,7 @@
 //  Images+CoreDataClass.swift
 //  
 //
-//  Created by Garima Aggarwal on 7/3/18.
+//  Created by Garima Aggarwal on 7/21/18.
 //
 //
 

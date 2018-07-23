@@ -2,7 +2,7 @@
 //  Location+CoreDataProperties.swift
 //  
 //
-//  Created by Garima Aggarwal on 7/3/18.
+//  Created by Garima Aggarwal on 7/22/18.
 //
 //
 
@@ -16,27 +16,26 @@ extension Location {
         return NSFetchRequest<Location>(entityName: "Location")
     }
 
-    @NSManaged public var city: String?
-    @NSManaged public var country: String?
-    @NSManaged public var depth: Double
-    @NSManaged public var island: String?
-    @NSManaged public var latitude: Double
-    @NSManaged public var locDescription: String?
-    @NSManaged public var longitude: Double
-    @NSManaged public var name: String?
-    @NSManaged public var type: String?
-    @NSManaged public var windE: Int16
-    @NSManaged public var windN: Int16
-    @NSManaged public var windNE: Int16
-    @NSManaged public var windNW: Int16
-    @NSManaged public var windS: Int16
-    @NSManaged public var windSE: Int16
-    @NSManaged public var windSW: Int16
-    @NSManaged public var windW: Int16
+    @NSManaged public var distance: Double
+    @NSManaged public var addedBy: User?
+    @NSManaged public var city: City?
+    @NSManaged public var coordinates: Coordinates?
+    @NSManaged public var depth: Depth?
     @NSManaged public var images: NSSet?
-    @NSManaged public var verifications: Verification?
+    @NSManaged public var island: Island?
+    @NSManaged public var locdescription: Description?
+    @NSManaged public var name: Name?
+    @NSManaged public var type: Type?
+    @NSManaged public var verifiedBy: NSSet?
     @NSManaged public var versions: NSSet?
-    @NSManaged public var createdBy: User?
+    @NSManaged public var windE: WindE?
+    @NSManaged public var windN: WindN?
+    @NSManaged public var windNE: WindNE?
+    @NSManaged public var windNW: WindNW?
+    @NSManaged public var windS: WindS?
+    @NSManaged public var windSE: WindSE?
+    @NSManaged public var windSW: WindSW?
+    @NSManaged public var windW: WindW?
 
 }
 
@@ -54,6 +53,23 @@ extension Location {
 
     @objc(removeImages:)
     @NSManaged public func removeFromImages(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for verifiedBy
+extension Location {
+
+    @objc(addVerifiedByObject:)
+    @NSManaged public func addToVerifiedBy(_ value: User)
+
+    @objc(removeVerifiedByObject:)
+    @NSManaged public func removeFromVerifiedBy(_ value: User)
+
+    @objc(addVerifiedBy:)
+    @NSManaged public func addToVerifiedBy(_ values: NSSet)
+
+    @objc(removeVerifiedBy:)
+    @NSManaged public func removeFromVerifiedBy(_ values: NSSet)
 
 }
 
