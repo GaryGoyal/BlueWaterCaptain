@@ -686,7 +686,7 @@
 				DEVELOPMENT_TEAM = DNXX3PDR88;
 				INFOPLIST_FILE = BlueWaterCaptain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.ios.SceneTextRecognitioniOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.BlueWaterCaptain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlueWaterCaptain/Supporting Files/BlueWaterCaptain-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -705,7 +705,7 @@
 				DEVELOPMENT_TEAM = DNXX3PDR88;
 				INFOPLIST_FILE = BlueWaterCaptain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.ios.SceneTextRecognitioniOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.BlueWaterCaptain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlueWaterCaptain/Supporting Files/BlueWaterCaptain-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
