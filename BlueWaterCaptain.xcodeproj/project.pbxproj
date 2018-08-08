@@ -7,6 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860F5882211AE138004EC9B0 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F585C211AE130004EC9B0 /* User+CoreDataProperties.swift */; };
+		860F5883211AE138004EC9B0 /* WindN+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F585D211AE130004EC9B0 /* WindN+CoreDataProperties.swift */; };
+		860F5884211AE138004EC9B0 /* Coordinates+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F585E211AE130004EC9B0 /* Coordinates+CoreDataClass.swift */; };
+		860F5885211AE138004EC9B0 /* WindS+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F585F211AE130004EC9B0 /* WindS+CoreDataClass.swift */; };
+		860F5886211AE138004EC9B0 /* WindSE+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5860211AE131004EC9B0 /* WindSE+CoreDataClass.swift */; };
+		860F5887211AE138004EC9B0 /* WindNE+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5861211AE131004EC9B0 /* WindNE+CoreDataProperties.swift */; };
+		860F5888211AE138004EC9B0 /* Images+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5862211AE131004EC9B0 /* Images+CoreDataClass.swift */; };
+		860F5889211AE138004EC9B0 /* WindN+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5863211AE131004EC9B0 /* WindN+CoreDataClass.swift */; };
+		860F588A211AE138004EC9B0 /* Description+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5864211AE131004EC9B0 /* Description+CoreDataProperties.swift */; };
+		860F588B211AE138004EC9B0 /* WindSW+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5865211AE131004EC9B0 /* WindSW+CoreDataProperties.swift */; };
+		860F588C211AE138004EC9B0 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5866211AE132004EC9B0 /* City+CoreDataProperties.swift */; };
+		860F588D211AE138004EC9B0 /* Type+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5867211AE132004EC9B0 /* Type+CoreDataClass.swift */; };
+		860F588E211AE138004EC9B0 /* Island+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5868211AE132004EC9B0 /* Island+CoreDataProperties.swift */; };
+		860F588F211AE138004EC9B0 /* Depth+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5869211AE132004EC9B0 /* Depth+CoreDataProperties.swift */; };
+		860F5890211AE138004EC9B0 /* Type+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F586A211AE132004EC9B0 /* Type+CoreDataProperties.swift */; };
+		860F5891211AE138004EC9B0 /* WindE+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F586B211AE133004EC9B0 /* WindE+CoreDataClass.swift */; };
+		860F5892211AE138004EC9B0 /* Name+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F586C211AE133004EC9B0 /* Name+CoreDataProperties.swift */; };
+		860F5893211AE138004EC9B0 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F586D211AE133004EC9B0 /* City+CoreDataClass.swift */; };
+		860F5894211AE138004EC9B0 /* Island+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F586E211AE133004EC9B0 /* Island+CoreDataClass.swift */; };
+		860F5895211AE138004EC9B0 /* WindW+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F586F211AE134004EC9B0 /* WindW+CoreDataClass.swift */; };
+		860F5896211AE138004EC9B0 /* WindSE+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5870211AE134004EC9B0 /* WindSE+CoreDataProperties.swift */; };
+		860F5897211AE138004EC9B0 /* WindNE+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5871211AE134004EC9B0 /* WindNE+CoreDataClass.swift */; };
+		860F5898211AE138004EC9B0 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5872211AE134004EC9B0 /* Location+CoreDataProperties.swift */; };
+		860F5899211AE138004EC9B0 /* Images+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5873211AE134004EC9B0 /* Images+CoreDataProperties.swift */; };
+		860F589A211AE138004EC9B0 /* WindE+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5874211AE135004EC9B0 /* WindE+CoreDataProperties.swift */; };
+		860F589B211AE138004EC9B0 /* WindS+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5875211AE135004EC9B0 /* WindS+CoreDataProperties.swift */; };
+		860F589C211AE138004EC9B0 /* Depth+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5876211AE135004EC9B0 /* Depth+CoreDataClass.swift */; };
+		860F589D211AE138004EC9B0 /* Versioning+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5877211AE135004EC9B0 /* Versioning+CoreDataProperties.swift */; };
+		860F589E211AE138004EC9B0 /* Versioning+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5878211AE135004EC9B0 /* Versioning+CoreDataClass.swift */; };
+		860F589F211AE138004EC9B0 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5879211AE136004EC9B0 /* Location+CoreDataClass.swift */; };
+		860F58A0211AE138004EC9B0 /* WindW+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F587A211AE136004EC9B0 /* WindW+CoreDataProperties.swift */; };
+		860F58A1211AE138004EC9B0 /* Coordinates+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F587B211AE136004EC9B0 /* Coordinates+CoreDataProperties.swift */; };
+		860F58A2211AE138004EC9B0 /* WindNW+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F587C211AE137004EC9B0 /* WindNW+CoreDataClass.swift */; };
+		860F58A3211AE138004EC9B0 /* Name+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F587D211AE137004EC9B0 /* Name+CoreDataClass.swift */; };
+		860F58A4211AE138004EC9B0 /* WindSW+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F587E211AE137004EC9B0 /* WindSW+CoreDataClass.swift */; };
+		860F58A5211AE138004EC9B0 /* WindNW+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F587F211AE137004EC9B0 /* WindNW+CoreDataProperties.swift */; };
+		860F58A6211AE138004EC9B0 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5880211AE138004EC9B0 /* User+CoreDataClass.swift */; };
+		860F58A7211AE138004EC9B0 /* Description+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F5881211AE138004EC9B0 /* Description+CoreDataClass.swift */; };
 		8613D8E420BBBA400091CC0B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8E120BBBA400091CC0B /* SideMenuViewController.swift */; };
 		8613D8E520BBBA400091CC0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8E220BBBA400091CC0B /* ViewController.swift */; };
 		8613D8E620BBBA400091CC0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613D8E320BBBA400091CC0B /* SearchViewController.swift */; };
@@ -28,45 +66,7 @@
 		8640D85120B99DC600F2DF7B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8640D85020B99DC500F2DF7B /* MapKit.framework */; };
 		864B78B120FA0A82005EA6B2 /* HelpCaptainsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B78B020FA0A82005EA6B2 /* HelpCaptainsViewController.swift */; };
 		864B78B320FA0BBA005EA6B2 /* ActivitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B78B220FA0BBA005EA6B2 /* ActivitesViewController.swift */; };
-		867AA3A52103396C00278426 /* WindSE+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA37F2103396400278426 /* WindSE+CoreDataClass.swift */; };
-		867AA3A62103396C00278426 /* WindS+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3802103396400278426 /* WindS+CoreDataClass.swift */; };
-		867AA3A72103396C00278426 /* Type+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3812103396400278426 /* Type+CoreDataClass.swift */; };
-		867AA3A82103396C00278426 /* Description+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3822103396400278426 /* Description+CoreDataClass.swift */; };
-		867AA3A92103396C00278426 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3832103396400278426 /* City+CoreDataClass.swift */; };
-		867AA3AA2103396C00278426 /* WindS+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3842103396500278426 /* WindS+CoreDataProperties.swift */; };
-		867AA3AB2103396C00278426 /* WindSE+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3852103396500278426 /* WindSE+CoreDataProperties.swift */; };
-		867AA3AC2103396C00278426 /* Type+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3862103396500278426 /* Type+CoreDataProperties.swift */; };
-		867AA3AD2103396C00278426 /* Name+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3872103396500278426 /* Name+CoreDataProperties.swift */; };
-		867AA3AE2103396C00278426 /* WindNE+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3882103396500278426 /* WindNE+CoreDataClass.swift */; };
-		867AA3AF2103396C00278426 /* Coordinates+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3892103396500278426 /* Coordinates+CoreDataProperties.swift */; };
-		867AA3B02103396C00278426 /* Images+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA38A2103396500278426 /* Images+CoreDataClass.swift */; };
-		867AA3B12103396C00278426 /* Name+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA38B2103396500278426 /* Name+CoreDataClass.swift */; };
-		867AA3B22103396C00278426 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA38C2103396600278426 /* City+CoreDataProperties.swift */; };
-		867AA3B32103396C00278426 /* WindNE+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA38D2103396600278426 /* WindNE+CoreDataProperties.swift */; };
-		867AA3B42103396C00278426 /* WindSW+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA38E2103396600278426 /* WindSW+CoreDataProperties.swift */; };
-		867AA3B62103396C00278426 /* WindNW+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3902103396600278426 /* WindNW+CoreDataProperties.swift */; };
-		867AA3B72103396C00278426 /* Coordinates+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3912103396700278426 /* Coordinates+CoreDataClass.swift */; };
-		867AA3B82103396C00278426 /* WindN+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3922103396700278426 /* WindN+CoreDataClass.swift */; };
-		867AA3B92103396C00278426 /* Depth+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3932103396700278426 /* Depth+CoreDataClass.swift */; };
-		867AA3BA2103396C00278426 /* WindE+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3942103396700278426 /* WindE+CoreDataClass.swift */; };
-		867AA3BB2103396C00278426 /* WindE+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3952103396700278426 /* WindE+CoreDataProperties.swift */; };
-		867AA3BD2103396C00278426 /* Versioning+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3972103396800278426 /* Versioning+CoreDataClass.swift */; };
-		867AA3BE2103396C00278426 /* WindW+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3982103396800278426 /* WindW+CoreDataProperties.swift */; };
-		867AA3BF2103396C00278426 /* WindN+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3992103396900278426 /* WindN+CoreDataProperties.swift */; };
-		867AA3C12103396C00278426 /* Description+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA39B2103396900278426 /* Description+CoreDataProperties.swift */; };
-		867AA3C22103396C00278426 /* Island+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA39C2103396900278426 /* Island+CoreDataProperties.swift */; };
-		867AA3C42103396C00278426 /* Island+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA39E2103396A00278426 /* Island+CoreDataClass.swift */; };
-		867AA3C52103396C00278426 /* Versioning+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA39F2103396A00278426 /* Versioning+CoreDataProperties.swift */; };
-		867AA3C62103396C00278426 /* Images+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3A02103396B00278426 /* Images+CoreDataProperties.swift */; };
-		867AA3C72103396C00278426 /* Depth+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3A12103396B00278426 /* Depth+CoreDataProperties.swift */; };
-		867AA3C82103396C00278426 /* WindNW+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3A22103396B00278426 /* WindNW+CoreDataClass.swift */; };
-		867AA3C92103396C00278426 /* WindSW+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3A32103396C00278426 /* WindSW+CoreDataClass.swift */; };
-		867AA3CA2103396C00278426 /* WindW+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3A42103396C00278426 /* WindW+CoreDataClass.swift */; };
-		867AA3CD21034CB200278426 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3CB21034CB200278426 /* User+CoreDataProperties.swift */; };
-		867AA3CE21034CB200278426 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867AA3CC21034CB200278426 /* User+CoreDataClass.swift */; };
 		86975BCA210470E0008A816F /* HelpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86975BC9210470E0008A816F /* HelpCell.swift */; };
-		86975BCD21048B8C008A816F /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86975BCB21048B8B008A816F /* Location+CoreDataClass.swift */; };
-		86975BCE21048B8C008A816F /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86975BCC21048B8C008A816F /* Location+CoreDataProperties.swift */; };
 		86B5F84F20D150E80015D13D /* ArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5F84E20D150E70015D13D /* ArcView.swift */; };
 		86CF445E20B6D6A200C34247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86CF445C20B6D6A200C34247 /* Main.storyboard */; };
 		86CF446320B6D6A200C34247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86CF446220B6D6A200C34247 /* Assets.xcassets */; };
@@ -83,6 +83,44 @@
 
 /* Begin PBXFileReference section */
 		2BF82BD0E40A4759B8CC3CFE /* Pods-BlueWaterCaptain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWaterCaptain.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWaterCaptain/Pods-BlueWaterCaptain.release.xcconfig"; sourceTree = "<group>"; };
+		860F585C211AE130004EC9B0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F585D211AE130004EC9B0 /* WindN+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindN+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F585E211AE130004EC9B0 /* Coordinates+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinates+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F585F211AE130004EC9B0 /* WindS+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindS+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5860211AE131004EC9B0 /* WindSE+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSE+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5861211AE131004EC9B0 /* WindNE+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNE+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5862211AE131004EC9B0 /* Images+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Images+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5863211AE131004EC9B0 /* WindN+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindN+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5864211AE131004EC9B0 /* Description+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Description+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5865211AE131004EC9B0 /* WindSW+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSW+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5866211AE132004EC9B0 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5867211AE132004EC9B0 /* Type+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Type+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5868211AE132004EC9B0 /* Island+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Island+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5869211AE132004EC9B0 /* Depth+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Depth+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F586A211AE132004EC9B0 /* Type+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Type+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F586B211AE133004EC9B0 /* WindE+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindE+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F586C211AE133004EC9B0 /* Name+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Name+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F586D211AE133004EC9B0 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F586E211AE133004EC9B0 /* Island+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Island+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F586F211AE134004EC9B0 /* WindW+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindW+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5870211AE134004EC9B0 /* WindSE+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSE+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5871211AE134004EC9B0 /* WindNE+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNE+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5872211AE134004EC9B0 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5873211AE134004EC9B0 /* Images+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Images+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5874211AE135004EC9B0 /* WindE+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindE+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5875211AE135004EC9B0 /* WindS+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindS+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5876211AE135004EC9B0 /* Depth+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Depth+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5877211AE135004EC9B0 /* Versioning+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Versioning+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5878211AE135004EC9B0 /* Versioning+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Versioning+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5879211AE136004EC9B0 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F587A211AE136004EC9B0 /* WindW+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindW+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F587B211AE136004EC9B0 /* Coordinates+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinates+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F587C211AE137004EC9B0 /* WindNW+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNW+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F587D211AE137004EC9B0 /* Name+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Name+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F587E211AE137004EC9B0 /* WindSW+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSW+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F587F211AE137004EC9B0 /* WindNW+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNW+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		860F5880211AE138004EC9B0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		860F5881211AE138004EC9B0 /* Description+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Description+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8613D8E120BBBA400091CC0B /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		8613D8E220BBBA400091CC0B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8613D8E320BBBA400091CC0B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -107,45 +145,7 @@
 		8640D85020B99DC500F2DF7B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		864B78B020FA0A82005EA6B2 /* HelpCaptainsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCaptainsViewController.swift; sourceTree = "<group>"; };
 		864B78B220FA0BBA005EA6B2 /* ActivitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitesViewController.swift; sourceTree = "<group>"; };
-		867AA37F2103396400278426 /* WindSE+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSE+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3802103396400278426 /* WindS+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindS+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3812103396400278426 /* Type+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Type+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3822103396400278426 /* Description+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Description+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3832103396400278426 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3842103396500278426 /* WindS+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindS+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3852103396500278426 /* WindSE+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSE+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3862103396500278426 /* Type+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Type+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3872103396500278426 /* Name+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Name+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3882103396500278426 /* WindNE+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNE+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3892103396500278426 /* Coordinates+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinates+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA38A2103396500278426 /* Images+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Images+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA38B2103396500278426 /* Name+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Name+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA38C2103396600278426 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA38D2103396600278426 /* WindNE+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNE+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA38E2103396600278426 /* WindSW+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSW+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3902103396600278426 /* WindNW+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNW+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3912103396700278426 /* Coordinates+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinates+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3922103396700278426 /* WindN+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindN+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3932103396700278426 /* Depth+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Depth+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3942103396700278426 /* WindE+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindE+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3952103396700278426 /* WindE+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindE+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3972103396800278426 /* Versioning+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Versioning+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3982103396800278426 /* WindW+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindW+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3992103396900278426 /* WindN+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindN+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA39B2103396900278426 /* Description+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Description+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA39C2103396900278426 /* Island+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Island+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA39E2103396A00278426 /* Island+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Island+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA39F2103396A00278426 /* Versioning+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Versioning+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3A02103396B00278426 /* Images+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Images+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3A12103396B00278426 /* Depth+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Depth+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		867AA3A22103396B00278426 /* WindNW+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindNW+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3A32103396C00278426 /* WindSW+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindSW+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3A42103396C00278426 /* WindW+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WindW+CoreDataClass.swift"; sourceTree = "<group>"; };
-		867AA3CB21034CB200278426 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "/Users/Garima/Desktop/Work in Progress/Blue Water Captain/BlueWaterCaptain/BlueWaterCaptain/Model/User+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		867AA3CC21034CB200278426 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "/Users/Garima/Desktop/Work in Progress/Blue Water Captain/BlueWaterCaptain/BlueWaterCaptain/Model/User+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		86975BC9210470E0008A816F /* HelpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCell.swift; sourceTree = "<group>"; };
-		86975BCB21048B8B008A816F /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataClass.swift"; path = "/Users/Garima/Desktop/Work in Progress/Blue Water Captain/BlueWaterCaptain/BlueWaterCaptain/Model/Location+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		86975BCC21048B8C008A816F /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "/Users/Garima/Desktop/Work in Progress/Blue Water Captain/BlueWaterCaptain/BlueWaterCaptain/Model/Location+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		86B5F84E20D150E70015D13D /* ArcView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcView.swift; sourceTree = "<group>"; };
 		86CF445520B6D6A200C34247 /* BlueWaterCaptain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueWaterCaptain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86CF445D20B6D6A200C34247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -209,44 +209,44 @@
 		8613D8DE20BBB9D10091CC0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				86975BCB21048B8B008A816F /* Location+CoreDataClass.swift */,
-				86975BCC21048B8C008A816F /* Location+CoreDataProperties.swift */,
-				867AA3CC21034CB200278426 /* User+CoreDataClass.swift */,
-				867AA3CB21034CB200278426 /* User+CoreDataProperties.swift */,
-				867AA3912103396700278426 /* Coordinates+CoreDataClass.swift */,
-				867AA3892103396500278426 /* Coordinates+CoreDataProperties.swift */,
-				867AA3942103396700278426 /* WindE+CoreDataClass.swift */,
-				867AA3952103396700278426 /* WindE+CoreDataProperties.swift */,
-				867AA3822103396400278426 /* Description+CoreDataClass.swift */,
-				867AA39B2103396900278426 /* Description+CoreDataProperties.swift */,
-				867AA3972103396800278426 /* Versioning+CoreDataClass.swift */,
-				867AA39F2103396A00278426 /* Versioning+CoreDataProperties.swift */,
-				867AA3882103396500278426 /* WindNE+CoreDataClass.swift */,
-				867AA38D2103396600278426 /* WindNE+CoreDataProperties.swift */,
-				867AA39E2103396A00278426 /* Island+CoreDataClass.swift */,
-				867AA39C2103396900278426 /* Island+CoreDataProperties.swift */,
-				867AA3A42103396C00278426 /* WindW+CoreDataClass.swift */,
-				867AA3982103396800278426 /* WindW+CoreDataProperties.swift */,
-				867AA3932103396700278426 /* Depth+CoreDataClass.swift */,
-				867AA3A12103396B00278426 /* Depth+CoreDataProperties.swift */,
-				867AA38A2103396500278426 /* Images+CoreDataClass.swift */,
-				867AA3A02103396B00278426 /* Images+CoreDataProperties.swift */,
-				867AA38B2103396500278426 /* Name+CoreDataClass.swift */,
-				867AA3872103396500278426 /* Name+CoreDataProperties.swift */,
-				867AA3832103396400278426 /* City+CoreDataClass.swift */,
-				867AA38C2103396600278426 /* City+CoreDataProperties.swift */,
-				867AA3922103396700278426 /* WindN+CoreDataClass.swift */,
-				867AA3992103396900278426 /* WindN+CoreDataProperties.swift */,
-				867AA3A22103396B00278426 /* WindNW+CoreDataClass.swift */,
-				867AA3902103396600278426 /* WindNW+CoreDataProperties.swift */,
-				867AA3802103396400278426 /* WindS+CoreDataClass.swift */,
-				867AA3842103396500278426 /* WindS+CoreDataProperties.swift */,
-				867AA37F2103396400278426 /* WindSE+CoreDataClass.swift */,
-				867AA3852103396500278426 /* WindSE+CoreDataProperties.swift */,
-				867AA3812103396400278426 /* Type+CoreDataClass.swift */,
-				867AA3862103396500278426 /* Type+CoreDataProperties.swift */,
-				867AA3A32103396C00278426 /* WindSW+CoreDataClass.swift */,
-				867AA38E2103396600278426 /* WindSW+CoreDataProperties.swift */,
+				860F5878211AE135004EC9B0 /* Versioning+CoreDataClass.swift */,
+				860F5877211AE135004EC9B0 /* Versioning+CoreDataProperties.swift */,
+				860F5863211AE131004EC9B0 /* WindN+CoreDataClass.swift */,
+				860F585D211AE130004EC9B0 /* WindN+CoreDataProperties.swift */,
+				860F585E211AE130004EC9B0 /* Coordinates+CoreDataClass.swift */,
+				860F587B211AE136004EC9B0 /* Coordinates+CoreDataProperties.swift */,
+				860F5862211AE131004EC9B0 /* Images+CoreDataClass.swift */,
+				860F5873211AE134004EC9B0 /* Images+CoreDataProperties.swift */,
+				860F5880211AE138004EC9B0 /* User+CoreDataClass.swift */,
+				860F585C211AE130004EC9B0 /* User+CoreDataProperties.swift */,
+				860F5881211AE138004EC9B0 /* Description+CoreDataClass.swift */,
+				860F5864211AE131004EC9B0 /* Description+CoreDataProperties.swift */,
+				860F587E211AE137004EC9B0 /* WindSW+CoreDataClass.swift */,
+				860F5865211AE131004EC9B0 /* WindSW+CoreDataProperties.swift */,
+				860F5876211AE135004EC9B0 /* Depth+CoreDataClass.swift */,
+				860F5869211AE132004EC9B0 /* Depth+CoreDataProperties.swift */,
+				860F5871211AE134004EC9B0 /* WindNE+CoreDataClass.swift */,
+				860F5861211AE131004EC9B0 /* WindNE+CoreDataProperties.swift */,
+				860F587C211AE137004EC9B0 /* WindNW+CoreDataClass.swift */,
+				860F587F211AE137004EC9B0 /* WindNW+CoreDataProperties.swift */,
+				860F586D211AE133004EC9B0 /* City+CoreDataClass.swift */,
+				860F5866211AE132004EC9B0 /* City+CoreDataProperties.swift */,
+				860F585F211AE130004EC9B0 /* WindS+CoreDataClass.swift */,
+				860F5875211AE135004EC9B0 /* WindS+CoreDataProperties.swift */,
+				860F5867211AE132004EC9B0 /* Type+CoreDataClass.swift */,
+				860F586A211AE132004EC9B0 /* Type+CoreDataProperties.swift */,
+				860F586E211AE133004EC9B0 /* Island+CoreDataClass.swift */,
+				860F5868211AE132004EC9B0 /* Island+CoreDataProperties.swift */,
+				860F586F211AE134004EC9B0 /* WindW+CoreDataClass.swift */,
+				860F587A211AE136004EC9B0 /* WindW+CoreDataProperties.swift */,
+				860F5879211AE136004EC9B0 /* Location+CoreDataClass.swift */,
+				860F5872211AE134004EC9B0 /* Location+CoreDataProperties.swift */,
+				860F5860211AE131004EC9B0 /* WindSE+CoreDataClass.swift */,
+				860F5870211AE134004EC9B0 /* WindSE+CoreDataProperties.swift */,
+				860F586B211AE133004EC9B0 /* WindE+CoreDataClass.swift */,
+				860F5874211AE135004EC9B0 /* WindE+CoreDataProperties.swift */,
+				860F587D211AE137004EC9B0 /* Name+CoreDataClass.swift */,
+				860F586C211AE133004EC9B0 /* Name+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -477,69 +477,69 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				867AA3B22103396C00278426 /* City+CoreDataProperties.swift in Sources */,
-				867AA3CA2103396C00278426 /* WindW+CoreDataClass.swift in Sources */,
-				867AA3B92103396C00278426 /* Depth+CoreDataClass.swift in Sources */,
-				867AA3C52103396C00278426 /* Versioning+CoreDataProperties.swift in Sources */,
 				861FF15B20FC7C2D0051ACE1 /* BlueWaterCaptain.xcdatamodeld in Sources */,
-				867AA3C22103396C00278426 /* Island+CoreDataProperties.swift in Sources */,
-				867AA3AA2103396C00278426 /* WindS+CoreDataProperties.swift in Sources */,
+				860F5899211AE138004EC9B0 /* Images+CoreDataProperties.swift in Sources */,
+				860F588F211AE138004EC9B0 /* Depth+CoreDataProperties.swift in Sources */,
 				8636391820C551E100C04D62 /* AddEditViewController.swift in Sources */,
 				86CF6F2120BD13FF00C47D1E /* CHCSVParser.m in Sources */,
+				860F5893211AE138004EC9B0 /* City+CoreDataClass.swift in Sources */,
 				864B78B320FA0BBA005EA6B2 /* ActivitesViewController.swift in Sources */,
+				860F589A211AE138004EC9B0 /* WindE+CoreDataProperties.swift in Sources */,
+				860F5890211AE138004EC9B0 /* Type+CoreDataProperties.swift in Sources */,
 				8613D8FA20BBBB230091CC0B /* LocationResultCell.swift in Sources */,
 				8613D8E420BBBA400091CC0B /* SideMenuViewController.swift in Sources */,
-				867AA3BD2103396C00278426 /* Versioning+CoreDataClass.swift in Sources */,
+				860F5885211AE138004EC9B0 /* WindS+CoreDataClass.swift in Sources */,
 				8640D82720B935EA00F2DF7B /* SWRevealViewController.m in Sources */,
-				867AA3B42103396C00278426 /* WindSW+CoreDataProperties.swift in Sources */,
 				86170E8220D7D88C00577D3B /* LocationImage.swift in Sources */,
-				867AA3C92103396C00278426 /* WindSW+CoreDataClass.swift in Sources */,
 				8613D90520BBBFB60091CC0B /* AppDelegate.swift in Sources */,
+				860F589D211AE138004EC9B0 /* Versioning+CoreDataProperties.swift in Sources */,
+				860F5896211AE138004EC9B0 /* WindSE+CoreDataProperties.swift in Sources */,
+				860F58A4211AE138004EC9B0 /* WindSW+CoreDataClass.swift in Sources */,
 				86B5F84F20D150E80015D13D /* ArcView.swift in Sources */,
-				867AA3A82103396C00278426 /* Description+CoreDataClass.swift in Sources */,
+				860F5883211AE138004EC9B0 /* WindN+CoreDataProperties.swift in Sources */,
+				860F5882211AE138004EC9B0 /* User+CoreDataProperties.swift in Sources */,
 				86CF6F2B20BEA6D900C47D1E /* LocationAnnotationView.swift in Sources */,
-				867AA3C72103396C00278426 /* Depth+CoreDataProperties.swift in Sources */,
-				867AA3AB2103396C00278426 /* WindSE+CoreDataProperties.swift in Sources */,
+				860F58A0211AE138004EC9B0 /* WindW+CoreDataProperties.swift in Sources */,
+				860F5884211AE138004EC9B0 /* Coordinates+CoreDataClass.swift in Sources */,
+				860F58A7211AE138004EC9B0 /* Description+CoreDataClass.swift in Sources */,
+				860F5888211AE138004EC9B0 /* Images+CoreDataClass.swift in Sources */,
+				860F58A5211AE138004EC9B0 /* WindNW+CoreDataProperties.swift in Sources */,
+				860F5892211AE138004EC9B0 /* Name+CoreDataProperties.swift in Sources */,
 				8613D8FB20BBBB230091CC0B /* IntroLabel.swift in Sources */,
 				86CF6F2F20BF0C1800C47D1E /* RegisterViewController.swift in Sources */,
-				867AA3AE2103396C00278426 /* WindNE+CoreDataClass.swift in Sources */,
-				86975BCD21048B8C008A816F /* Location+CoreDataClass.swift in Sources */,
-				867AA3A92103396C00278426 /* City+CoreDataClass.swift in Sources */,
-				867AA3C12103396C00278426 /* Description+CoreDataProperties.swift in Sources */,
 				8613D8E520BBBA400091CC0B /* ViewController.swift in Sources */,
+				860F588B211AE138004EC9B0 /* WindSW+CoreDataProperties.swift in Sources */,
 				86170F1120E207B300577D3B /* VerifyButton.swift in Sources */,
-				867AA3C62103396C00278426 /* Images+CoreDataProperties.swift in Sources */,
-				867AA3C42103396C00278426 /* Island+CoreDataClass.swift in Sources */,
 				8613D8F720BBBB0C0091CC0B /* LocationSearchTable.swift in Sources */,
-				867AA3B72103396C00278426 /* Coordinates+CoreDataClass.swift in Sources */,
-				867AA3B32103396C00278426 /* WindNE+CoreDataProperties.swift in Sources */,
+				860F5889211AE138004EC9B0 /* WindN+CoreDataClass.swift in Sources */,
+				860F588A211AE138004EC9B0 /* Description+CoreDataProperties.swift in Sources */,
 				864B78B120FA0A82005EA6B2 /* HelpCaptainsViewController.swift in Sources */,
-				867AA3AD2103396C00278426 /* Name+CoreDataProperties.swift in Sources */,
+				860F5897211AE138004EC9B0 /* WindNE+CoreDataClass.swift in Sources */,
+				860F588D211AE138004EC9B0 /* Type+CoreDataClass.swift in Sources */,
+				860F5898211AE138004EC9B0 /* Location+CoreDataProperties.swift in Sources */,
 				86975BCA210470E0008A816F /* HelpCell.swift in Sources */,
-				867AA3AC2103396C00278426 /* Type+CoreDataProperties.swift in Sources */,
 				8613D8E620BBBA400091CC0B /* SearchViewController.swift in Sources */,
-				867AA3BA2103396C00278426 /* WindE+CoreDataClass.swift in Sources */,
-				867AA3BB2103396C00278426 /* WindE+CoreDataProperties.swift in Sources */,
+				860F589C211AE138004EC9B0 /* Depth+CoreDataClass.swift in Sources */,
+				860F5894211AE138004EC9B0 /* Island+CoreDataClass.swift in Sources */,
+				860F5886211AE138004EC9B0 /* WindSE+CoreDataClass.swift in Sources */,
+				860F58A2211AE138004EC9B0 /* WindNW+CoreDataClass.swift in Sources */,
+				860F588C211AE138004EC9B0 /* City+CoreDataProperties.swift in Sources */,
+				860F58A1211AE138004EC9B0 /* Coordinates+CoreDataProperties.swift in Sources */,
+				860F589B211AE138004EC9B0 /* WindS+CoreDataProperties.swift in Sources */,
+				860F5887211AE138004EC9B0 /* WindNE+CoreDataProperties.swift in Sources */,
 				8636390620C28C2000C04D62 /* FilterViewController.swift in Sources */,
+				860F58A6211AE138004EC9B0 /* User+CoreDataClass.swift in Sources */,
+				860F589E211AE138004EC9B0 /* Versioning+CoreDataClass.swift in Sources */,
+				860F58A3211AE138004EC9B0 /* Name+CoreDataClass.swift in Sources */,
+				860F5895211AE138004EC9B0 /* WindW+CoreDataClass.swift in Sources */,
+				860F588E211AE138004EC9B0 /* Island+CoreDataProperties.swift in Sources */,
 				86CF6F2D20BF0C0800C47D1E /* LoginViewController.swift in Sources */,
-				867AA3B82103396C00278426 /* WindN+CoreDataClass.swift in Sources */,
-				867AA3BF2103396C00278426 /* WindN+CoreDataProperties.swift in Sources */,
-				867AA3B12103396C00278426 /* Name+CoreDataClass.swift in Sources */,
-				867AA3BE2103396C00278426 /* WindW+CoreDataProperties.swift in Sources */,
-				867AA3B02103396C00278426 /* Images+CoreDataClass.swift in Sources */,
-				86975BCE21048B8C008A816F /* Location+CoreDataProperties.swift in Sources */,
-				867AA3CE21034CB200278426 /* User+CoreDataClass.swift in Sources */,
+				860F5891211AE138004EC9B0 /* WindE+CoreDataClass.swift in Sources */,
 				8613D8F420BBBAE80091CC0B /* SettingsViewController.swift in Sources */,
 				86CF6F2920BE880F00C47D1E /* DetailsViewController.swift in Sources */,
-				867AA3C82103396C00278426 /* WindNW+CoreDataClass.swift in Sources */,
 				8636390020C265D600C04D62 /* CalculationsAndConversions.swift in Sources */,
-				867AA3A72103396C00278426 /* Type+CoreDataClass.swift in Sources */,
-				867AA3A62103396C00278426 /* WindS+CoreDataClass.swift in Sources */,
-				867AA3B62103396C00278426 /* WindNW+CoreDataProperties.swift in Sources */,
-				867AA3A52103396C00278426 /* WindSE+CoreDataClass.swift in Sources */,
+				860F589F211AE138004EC9B0 /* Location+CoreDataClass.swift in Sources */,
 				86D860AE20CC13220067CB11 /* NewLocationImage.swift in Sources */,
-				867AA3CD21034CB200278426 /* User+CoreDataProperties.swift in Sources */,
-				867AA3AF2103396C00278426 /* Coordinates+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

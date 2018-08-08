@@ -2,6 +2,120 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BlueWaterCaptain/Model/Versioning+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Versioning+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindN+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindN+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Coordinates+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Coordinates+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Images+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Images+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/User+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/User+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Description+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Description+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindSW+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindSW+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Depth+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Depth+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindNE+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindNE+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindNW+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindNW+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/City+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/City+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindS+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindS+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Type+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Type+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Island+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Island+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindW+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindW+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Location+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Location+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindSE+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindSE+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindE+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/WindE+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Name+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BlueWaterCaptain/Model/Name+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:BlueWaterCaptain.xcodeproj">
    </FileRef>
    <FileRef

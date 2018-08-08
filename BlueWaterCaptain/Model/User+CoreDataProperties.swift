@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  
 //
-//  Created by Garima Aggarwal on 7/21/18.
+//  Created by Garima Aggarwal on 8/8/18.
 //
 //
 
@@ -16,11 +16,12 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var username: String?
-    @NSManaged public var userId: String?
     @NSManaged public var profilePic: NSData?
+    @NSManaged public var userId: String?
+    @NSManaged public var username: String?
     @NSManaged public var addedLoc: NSSet?
     @NSManaged public var verifiedCity: NSSet?
+    @NSManaged public var verifiedCoordinates: NSSet?
     @NSManaged public var verifiedDepth: NSSet?
     @NSManaged public var verifiedDesc: NSSet?
     @NSManaged public var verifiedImage: NSSet?
@@ -36,7 +37,6 @@ extension User {
     @NSManaged public var verifiedWindSE: NSSet?
     @NSManaged public var verifiedWindSW: NSSet?
     @NSManaged public var verifiedWindW: NSSet?
-    @NSManaged public var verifiedCoordinates: NSSet?
 
 }
 
@@ -71,6 +71,23 @@ extension User {
 
     @objc(removeVerifiedCity:)
     @NSManaged public func removeFromVerifiedCity(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for verifiedCoordinates
+extension User {
+
+    @objc(addVerifiedCoordinatesObject:)
+    @NSManaged public func addToVerifiedCoordinates(_ value: Coordinates)
+
+    @objc(removeVerifiedCoordinatesObject:)
+    @NSManaged public func removeFromVerifiedCoordinates(_ value: Coordinates)
+
+    @objc(addVerifiedCoordinates:)
+    @NSManaged public func addToVerifiedCoordinates(_ values: NSSet)
+
+    @objc(removeVerifiedCoordinates:)
+    @NSManaged public func removeFromVerifiedCoordinates(_ values: NSSet)
 
 }
 
@@ -326,22 +343,5 @@ extension User {
 
     @objc(removeVerifiedWindW:)
     @NSManaged public func removeFromVerifiedWindW(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for verifiedCoordinates
-extension User {
-
-    @objc(addVerifiedCoordinatesObject:)
-    @NSManaged public func addToVerifiedCoordinates(_ value: Coordinates)
-
-    @objc(removeVerifiedCoordinatesObject:)
-    @NSManaged public func removeFromVerifiedCoordinates(_ value: Coordinates)
-
-    @objc(addVerifiedCoordinates:)
-    @NSManaged public func addToVerifiedCoordinates(_ values: NSSet)
-
-    @objc(removeVerifiedCoordinates:)
-    @NSManaged public func removeFromVerifiedCoordinates(_ values: NSSet)
 
 }

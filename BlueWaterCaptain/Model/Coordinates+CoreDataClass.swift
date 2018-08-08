@@ -2,7 +2,7 @@
 //  Coordinates+CoreDataClass.swift
 //  
 //
-//  Created by Garima Aggarwal on 7/21/18.
+//  Created by Garima Aggarwal on 8/8/18.
 //
 //
 
